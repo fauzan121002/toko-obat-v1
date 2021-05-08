@@ -1,10 +1,7 @@
-<h1 align="center">Selamat datang di Toko Obat! 👋</h1>
-
-![Landing Page](https://github.com/fauzan121002/toko-obat-v1/blob/master/public/assets/images/screenshot.jpg?raw=true)
-
+<h1 align="center">Selamat datang di Toko Obat! </h1>
 
 [![](https://img.shields.io/github/issues/fauzan121002/toko-obat-v1?style=flat-square)](https://img.shields.io/github/issues/fauzan121002/toko-obat-v1?style=flat-square) ![](https://img.shields.io/github/stars/fauzan121002/toko-obat-v1?style=flat-square)
-![](https://img.shields.io/github/forks/fauzan121002/toko-obat-v1?style=flat-square) ![](https://img.shields.io/github/license/fauzan121002/toko-obat-v1?style=flat-square) [![saythanks](https://img.shields.io/badge/say-thanks-ff69b4.svg?style=flat-square)](https://saythanks.io/to/zaidanline67%40gmail.com) [![HitCount](http://hits.dwyl.com/fauzan121002/https://github.com/fauzan121002/toko-obat-v1.svg)](http://hits.dwyl.com/fauzan121002/https://github.com/fauzan121002/toko-obat-v1)  [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=flat-square)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity) [![GitHub followers](https://img.shields.io/github/followers/fauzan121002.svg?style=flat-square&label=Follow&maxAge=2592000)](https://github.com/fauzan121002?tab=followers)
+![](https://img.shields.io/github/forks/fauzan121002/toko-obat-v1?style=flat-square) ![](https://img.shields.io/github/license/fauzan121002/toko-obat-v1?style=flat-square) [![saythanks](https://img.shields.io/badge/say-thanks-ff69b4.svg?style=flat-square)](https://saythanks.io/to/zaidanline67%40gmail.com) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=flat-square)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity) [![GitHub followers](https://img.shields.io/github/followers/fauzan121002.svg?style=flat-square&label=Follow&maxAge=2592000)](https://github.com/fauzan121002?tab=followers)
 
 <p align="center">
 	
@@ -12,10 +9,10 @@
 
 </p>
 
-### 🤔 Apa itu Toko Obat v1?
+### Apa itu Toko Obat ?
 Web POS Toko Obat yang dibuat oleh <a href="https://github.com/fauzan121002"> Muhammad Fauzan </a>. **Toko Obat adalah Website untuk apotik ataupun toko obat dapat melihat history penjualan , dapat melakukan penjualan menggunakan media digital.**
 
-### 🤨 Fitur apa saja yang tersedia di Toko Obat?
+### Fitur apa saja yang tersedia di Toko Obat?
 - Autentikasi Admin & Kasir
 - Dashboard
 - Kasir
