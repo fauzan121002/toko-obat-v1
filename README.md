@@ -26,7 +26,7 @@ Web POS Toko Obat yang dibuat oleh <a href="https://github.com/fauzan121002"> Mu
 - Riwayat Transaksi
 - Update Pengumuman
 
-### 📆 <a href="http://fauzanishere.my.id/">Release Date</a>
+### 📆 Release Date
 **Release date : 12 May 2020**
 > Toko Obat merupakan project open source yang dibuat oleh Muhammad Fauzan. Kalian dapat download/fork/clone. Cukup beri stars di project ini agar memberiku semangat. Terima kasih!
 
@@ -68,29 +68,16 @@ php artisan config:cache
 php artisan config:clear
 ```
 
-4.** Jalankan website**
+4. **Jalankan website**
 ```bash
 php artisan serve
 ```
-
-## 🧑 Author
-
-👤 <a href="https://www.facebook.com/fauzandotjs"> **Muhammad Fauzan**</a>
-- Facebook : <a href="https://www.facebook.com/fauzandotjs"> Muhammad Fauzan</a>
-- LinkedIn : <a href="https://www.linkedin.com/in/muhammad-fauzan-b6824b18b/"> Muhammad Fauzan</a>
 
 ## 🤝 Contributing
 Contributions, issues and feature requests di persilahkan.
 Jangan ragu untuk memeriksa halaman masalah jika Anda ingin berkontribusi. **Berhubung Project ini saya sudah selesaikan sendiri, namun banyak fitur yang kalian dapat tambahkan silahkan berkontribusi yaa!**
 
-
 ## 📝 License
 - Copyright © 2020 Muhammad Fauzan.
 - **Toko Obat is open-sourced software licensed under the MIT license.**
-
-------------
-
-- **Made with ❤️ by Muhammad Fauzan .**
-- Thanks to <a href="http://devover.id">DevoverID</a>
-- toko-obat-v1 is open-sourced software licensed under the MIT license.
 
