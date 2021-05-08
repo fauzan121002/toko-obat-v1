@@ -72,6 +72,5 @@ Contributions, issues and feature requests di persilahkan.
 Jangan ragu untuk memeriksa halaman masalah jika Anda ingin berkontribusi. **Berhubung Project ini saya sudah selesaikan sendiri, namun banyak fitur yang kalian dapat tambahkan silahkan berkontribusi yaa!**
 
 ## License
-- Copyright © 2020 Muhammad Fauzan.
-- **Toko Obat is open-sourced software licensed under the MIT license.**
+Toko Obat is open-sourced software licensed under the MIT license.
 
