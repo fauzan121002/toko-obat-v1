@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\kasir;
-use App\kategoriobat;
-use App\jenisobat;
-use App\obat;
-use App\supplier;
-use App\alatkesehatan;
-use App\suplemen;
-use App\riwayatpengiriman;
-use App\pengumuman;
+use App\Kasir;
+use App\KategoriObat;
+use App\JenisObat;
+use App\Obat;
+use App\Supplier;
+use App\AlatKesehatan;
+use App\Suplemen;
+use App\RiwayatPengiriman;
+use App\Pengumuman;
 use Illuminate\Support\Facades\Hash;
 use File;
 

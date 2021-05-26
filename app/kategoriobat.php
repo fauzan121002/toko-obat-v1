@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class kategoriobat extends Model
+class KategoriObat extends Model
 {
 	protected $fillable = ["kode_kategoriobat","nama_kategoriobat","deskripsi_kategoriobat"];
 	protected $primaryKey = "id_kategoriobat";
