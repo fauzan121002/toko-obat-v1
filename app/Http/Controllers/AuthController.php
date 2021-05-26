@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use Auth;
-use Hash;
-use App\pengumuman;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Pengumuman;
 use App\AuthLogin;
 use App\AdminAuth;
 class AuthController extends Controller
