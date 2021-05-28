@@ -14,11 +14,11 @@ class KategoriObat extends Migration
      */
     public function up()
     {
-        Schema::create('kategori_obat', function (Blueprint $table) {
-            $table->increments('id_kategoriobat');
-            $table->string('kode_kategoriobat');
-            $table->string('nama_kategoriobat');
-            $table->longText('deskripsi_kategoriobat');
+        Schema::create('drug_categories', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('code');
+            $table->string('name');
+            $table->longText('description');
             $table->timestamps();
         });
     }

@@ -14,11 +14,11 @@ class Admin extends Migration
      */
     public function up()
     {
-        Schema::create('admin_auth', function (Blueprint $table) {
-            $table->increments('id_admin');
+        Schema::create('users', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('email');
             $table->string('password');
-            $table->enum('level', ['admin', 'developer']);
+            $table->enum('level', ['admin', 'developer', 'cashier']);
             $table->timestamps();
         });
     }

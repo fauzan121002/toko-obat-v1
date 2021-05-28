@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Pengumuman extends Migration
+class Supplier extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,13 @@ class Pengumuman extends Migration
      */
     public function up()
     {
-        Schema::create('pengumuman', function (Blueprint $table) {
-            $table->increments('id_pengumuman');
-            $table->text('isi_pengumuman');
+        Schema::create('suppliers', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('code');
+            $table->string('name');
+            $table->text('address');
+            $table->bigInteger('shipment_number')->nullable();
+            $table->string('status');
             $table->timestamps();
         });
     }

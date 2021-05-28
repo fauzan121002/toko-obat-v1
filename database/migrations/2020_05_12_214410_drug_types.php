@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Supplier extends Migration
+class JenisObat extends Migration
 {
     /**
      * Run the migrations.
@@ -14,13 +14,11 @@ class Supplier extends Migration
      */
     public function up()
     {
-        Schema::create('supplier', function (Blueprint $table) {
-            $table->increments('id_supplier');
-            $table->string('kode_supplier');
-            $table->string('nama_supplier');
-            $table->text('deskripsi_supplier');
-            $table->integer('jumlah_pengiriman')->nullable();
-            $table->string('status');
+        Schema::create('drug_types', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('code');
+            $table->string('name');
+            $table->longText('description');
             $table->timestamps();
         });
     }
