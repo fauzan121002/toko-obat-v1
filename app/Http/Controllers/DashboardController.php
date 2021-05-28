@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 use Response;
 
-class tokoobatController extends Controller
+class DashboardController extends Controller
 {
     public function login(){
         if(Session::has('email')){
@@ -49,22 +49,7 @@ class tokoobatController extends Controller
         }
     }
 
-    public function kasir(){   
-        if(Session::has('email')){
-            if (session('level') == 'admin' || session('level') == 'developer'){        
-                $kasir = kasir::paginate(5);
-                $kodeksr = kasir::orderBy('kode_kasir','DESC')->first();
-                return view('feature/kasir',['kasir'=>$kasir])->with(['kodeksr'=>$kodeksr]);
-            }else{
-                return redirect()->back();
-            }       
-        }else{
-            return redirect()->route('formlogin');
-        }         
-
-    }
-
-    public function obat(){
+    public function drugs(){
         if(Session::has('email')){               
             $obat = obat::paginate(5);
             $kodeobat = obat::orderBy('kode_obat','DESC')->first();
@@ -79,7 +64,7 @@ class tokoobatController extends Controller
     }
 
 
-    public function alatKesehatan(){
+    public function medicalDevices(){
         if(Session::has('email')){                   
             $alatkesehatan = alatkesehatan::paginate(5);
             $kodealatkesehatan = alatkesehatan::orderBy('nama_alatkesehatan','DESC')->first();
@@ -90,7 +75,7 @@ class tokoobatController extends Controller
         }
     }  
 
-    public function jenisObat(){
+    public function drugTypes(){
         if(Session::has('email')){                
             $jenisobat = jenisobat::paginate(5); 
             $kodejenisobat = jenisobat::orderBy('id_jenisobat','DESC')->first();
@@ -100,7 +85,7 @@ class tokoobatController extends Controller
         }
     }    
 
-    public function kategoriObat(){
+    public function drugCategory(){
         if(Session::has('email')){               
             $kategoriobat = kategoriobat::paginate(5);
             $kodektrobt = kategoriobat::orderBy('kode_kategoriobat','DESC')->first();
@@ -110,7 +95,7 @@ class tokoobatController extends Controller
         }
     }    
 
-    public function pelanggan(){
+    public function customer(){
         if(Session::has('email')){                
         	return view('feature/pelanggan');
         }else{
@@ -118,7 +103,7 @@ class tokoobatController extends Controller
         }
     }    
 
-    public function suplemen(){
+    public function supplements(){
         if(Session::has('email')){               
             $suplemen = suplemen::paginate(5);
             $kodesuplemen = suplemen::orderBy('kode_suplemen','DESC')->first();
@@ -129,7 +114,7 @@ class tokoobatController extends Controller
         }
     }    
 
-    public function supplier(){
+    public function suppliers(){
         if(Session::has('email')){               
             $supplier = supplier::paginate(5);
             $kodesupplier = supplier::orderBy('kode_supplier','DESC')->first();
@@ -139,7 +124,7 @@ class tokoobatController extends Controller
         }
     }    
     
-    public function riwayatpengiriman(){
+    public function shippingHistory(){
         if(Session::has('email')){                
             $riwayatpengiriman = riwayatpengiriman::orderBy('id_riwayatpengiriman','DESC')->paginate(10);
             return view('feature/riwayat-pengiriman-supplier',['riwayatpengiriman'=>$riwayatpengiriman]);
@@ -148,7 +133,7 @@ class tokoobatController extends Controller
         }
     }
 
-    public function getModalDataKasir(Request $request){
+    public function getModalCashierData(Request $request){
         if(Session::has('email')){           
             $kasir = kasir::where('id_kasir',$request->id)->get();
             return Response()->json($kasir);
@@ -157,7 +142,7 @@ class tokoobatController extends Controller
         }
     }
 
-    public function getModalKategoriObat(Request $request){
+    public function getModalDrugCategory(Request $request){
         if(Session::has('email')){        
             $kategoriobat = kategoriobat::where('id_kategoriobat',$request->id)->get();
             return Response()->json($kategoriobat);
@@ -166,7 +151,7 @@ class tokoobatController extends Controller
         }
     }
 
-    public function getModalJenisObat(Request $request){
+    public function getModalDrugTypes(Request $request){
         if(Session::has('email')){        
             $jenisobat = jenisobat::where('id_jenisobat',$request->id)->get();
             return Response()->json($jenisobat);
@@ -184,7 +169,7 @@ class tokoobatController extends Controller
         }
     }
 
-    public function getModalObat(Request $request){
+    public function getModalDrug(Request $request){
         if(Session::has('email')){        
             $obat = obat::where('id_obat',$request->id)->get();
             $kategoriobat = kategoriobat::orderBy('nama_kategoriobat','ASC')->get();
@@ -196,7 +181,7 @@ class tokoobatController extends Controller
         }
     }
 
-    public function getModalStokObat(Request $request){
+    public function getModalDrugStock(Request $request){
         if(Session::has('email')){         
             $stokobat = obat::where('id_obat',$request->id)->get();
             return Response()->json($stokobat);
@@ -205,7 +190,7 @@ class tokoobatController extends Controller
         }        
     }
 
-    public function getModalAlatKesehatan(Request $request){
+    public function getModalMedicalDevices(Request $request){
         if(Session::has('email')){ 
             $alatkesehatan = alatkesehatan::where('id_alatkesehatan',$request->id)->get();
             return Response()->json($alatkesehatan);
@@ -214,7 +199,7 @@ class tokoobatController extends Controller
         }
     }
 
-    public function getModalStokAlatKesehatan(Request $request){
+    public function getModalMedicalDevicesStock(Request $request){
         if(Session::has('email')){         
             $stokalatkesehatan = alatkesehatan::where('id_alatkesehatan',$request->id)->get();
             return Response()->json($stokalatkesehatan);
@@ -223,7 +208,7 @@ class tokoobatController extends Controller
         }
     }    
 
-    public function getModalStokSuplemen(Request $request){
+    public function getModalSupplementStock(Request $request){
         if(Session::has('email')){         
             $stoksuplemen = suplemen::where('id_suplemen',$request->id)->get();
             return Response()->json($stoksuplemen);
@@ -232,7 +217,7 @@ class tokoobatController extends Controller
         }
     }
 
-    public function getModalSuplemen(Request $request){
+    public function getModalSupplement(Request $request){
         if(Session::has('email')){         
             $suplemen = suplemen::where('id_suplemen',$request->id)->get();
             return Response()->json($suplemen);
@@ -241,7 +226,7 @@ class tokoobatController extends Controller
         }
     }
 
-    public function getModalTransaksiObat(Request $request){
+    public function getModalDrugTransaction(Request $request){
         if(Session::has('email')){       
           $kodetransaksi = transaksi::orderBy('kode_transaksi','DESC')->first(); 
           $kodetr = ($kodetransaksi !== null) ? $kodetransaksi->kode_transaksi : "SMT000";
@@ -257,7 +242,7 @@ class tokoobatController extends Controller
         }        
     }
 
-    public function getModalTransaksiSuplemen(Request $request){
+    public function getModalSupplementTransaction(Request $request){
         if(Session::has('email')){       
           $kodetransaksi = transaksi::orderBy('kode_transaksi','DESC')->first(); 
           $kodetr = ($kodetransaksi !== null) ? $kodetransaksi->kode_transaksi : "SMT000";
@@ -273,7 +258,7 @@ class tokoobatController extends Controller
         }        
     }    
 
-    public function getModalTransaksiAlatKesehatan(Request $request){
+    public function getModalMedicalDevicesTransaction(Request $request){
         if(Session::has('email')){       
           $kodetransaksi = transaksi::orderBy('kode_transaksi','DESC')->first(); 
           $kodetr = ($kodetransaksi !== null) ? $kodetransaksi->kode_transaksi : "SMT000";
@@ -289,7 +274,7 @@ class tokoobatController extends Controller
         }        
     } 
 
-    public function transaksi($id,$nama,Request $request){
+    public function transaction($id,$nama,Request $request){
         if(Session::has('email')){ 
             
             $this->validate($request,[
@@ -367,7 +352,7 @@ class tokoobatController extends Controller
         dd(Session::get("nama_kasir"));
     }
 
-    public function customstruk(){
+    public function customReceipt(){
         return view('feature/custom-struk');
     }
 

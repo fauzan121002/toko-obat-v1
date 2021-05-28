@@ -11,88 +11,88 @@ date_default_timezone_set('Asia/Jakarta');
 |
 */
 // Route::group(['middleware'=>'kasirAuth'],function(){
-Route::get('/','tokoobatController@login')->name('formlogin');
-Route::get('/dashboard','tokoobatController@dashboard')->name('dashboard');
-Route::get('/kasir','tokoobatController@kasir');
-Route::get('/obat','tokoobatController@obat');
-Route::get('/jenisobat','tokoobatController@jenisObat');
-Route::get('/kategoriobat','tokoobatController@kategoriObat');
-Route::get('/alatkesehatan','tokoobatController@alatKesehatan');
-Route::get('/pelanggan','tokoobatController@pelanggan');
-Route::get('/suplemen','tokoobatController@suplemen');
-Route::get('/supplier','tokoobatController@supplier');
-Route::put('/ubahpengumuman','featureController@ubahpengumuman');
-Route::get('/customstruk','tokoobatController@customstruk');
+Route::get('/','DashboardController@login')->name('formlogin');
+Route::get('/dashboard','DashboardController@dashboard')->name('dashboard');
+Route::get('/kasir','CashierController@index');
+Route::get('/obat','DashboardController@obat');
+Route::get('/jenisobat','DashboardController@jenisObat');
+Route::get('/kategoriobat','DashboardController@kategoriObat');
+Route::get('/alatkesehatan','DashboardController@alatKesehatan');
+Route::get('/pelanggan','DashboardController@pelanggan');
+Route::get('/suplemen','DashboardController@suplemen');
+Route::get('/supplier','DashboardController@supplier');
+Route::put('/ubahpengumuman','FeatureController@ubahpengumuman');
+Route::get('/customstruk','DashboardController@customstruk');
 Route::get('/riwayattransaksi',function(App\transaksi $transaksi){
     // dd($transaksi->all());
     return view('feature.riwayattransaksi',['transaksi'=>$transaksi->select('kode_transaksi','nama_pesanan','jumlah_pesanan','uang_diterima','nama_kasir')->paginate(5)]);
 });
 
-Route::post('/transaksi/{id}/{barang}','tokoobatController@transaksi');
-Route::post('/cart','tokoobatController@cart');
+Route::post('/transaksi/{id}/{barang}','DashboardController@transaksi');
+Route::post('/cart','DashboardController@cart');
 // });
-Route::get('/riwayatpengiriman','tokoobatController@riwayatpengiriman');
-Route::delete('/hapusriwayatpengiriman/{id}','featureController@hapusriwayatpengiriman');
+Route::get('/riwayatpengiriman','DashboardController@riwayatpengiriman');
+Route::delete('/hapusriwayatpengiriman/{id}','FeatureController@hapusriwayatpengiriman');
 
 Route::prefix('/kasir')->group(function(){
-	Route::get('/detailkasir','tokoobatController@getModalDataKasir');
-	Route::post('/tambahdatakasir','featureController@tambahdatakasir');
-	Route::delete('/{id}','featureController@hapusdatakasir');
-	Route::put('/{id}','featureController@ubahdatakasir');
+	Route::get('/detailkasir','DashboardController@getModalDataKasir');
+	Route::post('/tambahdatakasir','CashierController@store');
+	Route::put('/{id}','CashierController@update');
+	Route::delete('/{id}','CashierController@destroy');
 });
 
 Route::prefix('/kategoriobat')->group(function(){
-	Route::get('/detailkategoriobat','tokoobatController@getModalKategoriObat');
-	Route::post('/tambahkategoriobat','featureController@tambahkategoriobat');
-	Route::delete('/{id}','featureController@hapuskategoriobat');
-	Route::put('/{id}','featureController@ubahkategoriobat');
+	Route::get('/detailkategoriobat','DashboardController@getModalKategoriObat');
+	Route::post('/tambahkategoriobat','FeatureController@tambahkategoriobat');
+	Route::delete('/{id}','FeatureController@hapuskategoriobat');
+	Route::put('/{id}','FeatureController@ubahkategoriobat');
 });
 
 Route::prefix('/jenisobat')->group(function(){
-	Route::get('/detailjenisobat','tokoobatController@getModalJenisObat');
-	Route::post('/tambahjenisobat','featureController@tambahjenisobat');
-	Route::delete('/{id}','featureController@hapusjenisobat');
-	Route::put('/{id}','featureController@ubahjenisobat');
+	Route::get('/detailjenisobat','DashboardController@getModalJenisObat');
+	Route::post('/tambahjenisobat','FeatureController@tambahjenisobat');
+	Route::delete('/{id}','FeatureController@hapusjenisobat');
+	Route::put('/{id}','FeatureController@ubahjenisobat');
 });
 
 Route::prefix('/obat')->group(function(){
-	Route::get('/detailobat','tokoobatController@getModalObat');
-	Route::post('/tambahobat','featureController@tambahobat');
-	Route::delete('/{id}','featureController@hapusobat');
-	Route::put('/{id}','featureController@ubahobat');
+	Route::get('/detailobat','DashboardController@getModalObat');
+	Route::post('/tambahobat','FeatureController@tambahobat');
+	Route::delete('/{id}','FeatureController@hapusobat');
+	Route::put('/{id}','FeatureController@ubahobat');
 
-	Route::get('/detailtambahstokobat','tokoobatController@getModalStokObat');
-	Route::put('/tambahstokobat/{id}','featureController@tambahstokobat');
-	Route::get('/detailtransaksi','tokoobatController@getModalTransaksiObat');
+	Route::get('/detailtambahstokobat','DashboardController@getModalStokObat');
+	Route::put('/tambahstokobat/{id}','FeatureController@tambahstokobat');
+	Route::get('/detailtransaksi','DashboardController@getModalTransaksiObat');
 });
 
 Route::prefix('/supplier')->group(function(){
-	Route::get('/detailsupplier','tokoobatController@getModalSupplier');
-	Route::post('/tambahsupplier','featureController@tambahsupplier');
-	Route::delete('/{id}','featureController@hapussupplier');
-	Route::put('/{id}','featureController@ubahsupplier');
+	Route::get('/detailsupplier','DashboardController@getModalSupplier');
+	Route::post('/tambahsupplier','FeatureController@tambahsupplier');
+	Route::delete('/{id}','FeatureController@hapussupplier');
+	Route::put('/{id}','FeatureController@ubahsupplier');
 });
 
 Route::prefix('/alatkesehatan')->group(function(){
-	Route::get('/detailalatkesehatan','tokoobatController@getModalAlatKesehatan');
-	Route::post('/tambahalatkesehatan','featureController@tambahalatkesehatan');
-	Route::delete('/{id}','featureController@hapusalatkesehatan');
-	Route::put('/{id}','featureController@ubahalatkesehatan');
+	Route::get('/detailalatkesehatan','DashboardController@getModalAlatKesehatan');
+	Route::post('/tambahalatkesehatan','FeatureController@tambahalatkesehatan');
+	Route::delete('/{id}','FeatureController@hapusalatkesehatan');
+	Route::put('/{id}','FeatureController@ubahalatkesehatan');
 
-	Route::get('/detailtambahstokalatkesehatan','tokoobatController@getModalStokAlatKesehatan');
-	Route::put('/tambahstokalatkesehatan/{id}','featureController@tambahstokalatkesehatan');	
-	Route::get('/detailtransaksi','tokoobatController@getModalTransaksiAlatKesehatan');
+	Route::get('/detailtambahstokalatkesehatan','DashboardController@getModalStokAlatKesehatan');
+	Route::put('/tambahstokalatkesehatan/{id}','FeatureController@tambahstokalatkesehatan');	
+	Route::get('/detailtransaksi','DashboardController@getModalTransaksiAlatKesehatan');
 });
 
 Route::prefix('/suplemen')->group(function(){
-	Route::get('/detailsuplemen','tokoobatController@getModalSuplemen');
-	Route::post('/tambahsuplemen','featureController@tambahsuplemen');
-	Route::delete('/{id}','featureController@hapussuplemen');
-	Route::put('/{id}','featureController@ubahsuplemen');
+	Route::get('/detailsuplemen','DashboardController@getModalSuplemen');
+	Route::post('/tambahsuplemen','FeatureController@tambahsuplemen');
+	Route::delete('/{id}','FeatureController@hapussuplemen');
+	Route::put('/{id}','FeatureController@ubahsuplemen');
 
-	Route::get('/detailtambahstoksuplemen','tokoobatController@getModalStokSuplemen');
-	Route::put('/tambahstoksuplemen/{id}','featureController@tambahstoksuplemen');		
-	Route::get('/detailtransaksi','tokoobatController@getModalTransaksiSuplemen');
+	Route::get('/detailtambahstoksuplemen','DashboardController@getModalStokSuplemen');
+	Route::put('/tambahstoksuplemen/{id}','FeatureController@tambahstoksuplemen');		
+	Route::get('/detailtransaksi','DashboardController@getModalTransaksiSuplemen');
 });
 
 Route::prefix('/laporan')->group(function(){
