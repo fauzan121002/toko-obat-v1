@@ -11,7 +11,7 @@
 <div class="loadingmodal"></div>
  <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-     <a class="btn btn-outline-light ml-auto mr-1" href="{{ route('laporan.supplier') }}" target="_blank"><i class="fas fa-print text-white"></i></a>
+     <a class="btn btn-outline-light ml-auto mr-1" href="{{ route('report.supplier') }}" target="_blank"><i class="fas fa-print text-white"></i></a>
      <li class="breadcrumb-item active" aria-current="page"><button class="btn btn-outline-light" data-toggle="modal" data-target="#exampleModal">+</button></form>
     </ol>
   </nav>
@@ -70,7 +70,7 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                    <form class="form-prevent" action="/supplier/tambahsupplier" method="POST">
+                    <form class="form-prevent" action="{{ route('supplier.store') }}" method="POST">
                       @csrf
                       Kode Supplier <input type="text" class="form-control" name="kode_supplier" value="{{ $kode }}" readonly="">
                       Nama Supplier <input type="text" class="form-control" name="nama_supplier">
@@ -101,7 +101,7 @@
 
       $.ajax({
         type:'GET',
-        url:'/supplier/detailsupplier',
+        url:'/supplier/detail',
         dataType:'json',
         data:{
           "id":$(this).data('id')

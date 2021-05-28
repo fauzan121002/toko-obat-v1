@@ -28,7 +28,7 @@
        <td>{{ $data->jumlah_dikirim }}</td>
        <td>{{ $data->created_at }}</td>
        <td>
-        <form action="/hapusriwayatpengiriman/{{ $data->id_riwayatpengiriman }}" method="POST">
+        <form action="{{ route('shipping-history.destroy',$data->id_riwayatpengiriman) }}" method="POST">
           @method('DELETE')
           @csrf
           <button type="submit" class="btn btn-outline-danger">Hapus</button>

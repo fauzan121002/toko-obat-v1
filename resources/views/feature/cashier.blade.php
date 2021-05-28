@@ -20,7 +20,7 @@
  <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
      <li class="breadcrumb-item active ml-auto" aria-current="page">
-      <a class="btn btn-outline-light" href="{{ route('laporan.kasir') }}" target="_blank"><i class="fas fa-print text-white"></i></a>     
+      <a class="btn btn-outline-light" href="{{ route('report.cashier') }}" target="_blank"><i class="fas fa-print text-white"></i></a>     
       <button class="btn btn-outline-light" data-toggle="modal" data-target="#exampleModal">+</button></form>
     </ol>
   </nav>
@@ -71,7 +71,7 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                    <form class="form-prevent" action="/kasir/tambahdatakasir" method="POST" enctype="multipart/form-data">
+                    <form class="form-prevent" action="{{ route('cashier.store') }}" method="POST" enctype="multipart/form-data">
                       @csrf
                        Kode Kasir <input value="{{ $kode }}" type="text" name="kode_kasir" class="form-control" readonly="">
                        Foto Kasir <input type="file" name="foto_kasir" class="h-auto form-control"> 
@@ -132,7 +132,7 @@ $(document).ready(function(){
       $('.loadingmodal').append(`Loading...`);
       
       $.ajax({
-        url:'/kasir/detailkasir',
+        url:'{{ route('cashier.detail') }}',
         type:'GET',
         data:{
           'id':$(this).data('id')
@@ -174,7 +174,7 @@ $(document).ready(function(){
                                   </div>
                                   <div class=h-100></div>
                                   <div class=col>
-                                <form class=form-prevent action=/kasir/${data.id_kasir} method=POST enctype=multipart/form-data>
+                                <form class=form-prevent action=/cashier/${data.id_kasir} method=POST enctype=multipart/form-data>
                                   @method('PUT')
                                   @csrf
                                  Kode Kasir <input value='${data.kode_kasir}' type=text name=kode_kasir class=form-control readonly>
@@ -205,7 +205,7 @@ $(document).ready(function(){
                                    <button type=submit class='btn btn-warning button-prevent'>Ubah Data</button>
                                  </form>
                                  
-                                 <form class=form-prevent action=/kasir/${data.id_kasir} method=POST>
+                                 <form class=form-prevent action=/cashier/${data.id_kasir} method=POST>
                                  @method('DELETE') 
                                  @csrf 
                                  <button type=submit class='btn btn-danger button-prevent'>Hapus Data</button>

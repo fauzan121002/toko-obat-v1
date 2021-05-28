@@ -6,26 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Pengumuman;
+use App\Notification;
 use App\AuthLogin;
 use App\AdminAuth;
 class AuthController extends Controller
 {
-    // public function login_post(Request $r) {
-    // 	$email = $r->email;
-    // 	$password = Hash::make($r->password);
-
-    // 	$makeAuth = Auth::make($email,$password);
-
-    // 	if($makeAuth) {
-    // 		return redirect('/');
-    // 	}else{
-    // 		session()->flash('danger','Gagal login anjay');
-    // 		return redirect()->back();
-
-    // 	}
-    // }
-
     public function login(Request $request){
         try { 
             $kasir = Authlogin::where('email',$request->email)->first();
@@ -61,13 +46,10 @@ class AuthController extends Controller
         } catch(\Illuminate\Database\QueryException $ex){ 
           return redirect()->back()->with('queryException','Koneksi ke DB bermasalah harap coba lagi.');
         }
-
-
-
     }
 
     public function logout(Request $request){
     	Session::flush();
-    	return redirect()->route('formlogin');
+    	return redirect()->route('login');
     }
 }

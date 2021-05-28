@@ -12,7 +12,7 @@
  <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
      <li class="breadcrumb-item active ml-auto" aria-current="page">     
-      <a class="btn btn-outline-light" href="{{ route('laporan.suplemen') }}" target="_blank"><i class="fas fa-print text-white"></i></a> 
+      <a class="btn btn-outline-light" href="{{ route('report.supplement') }}" target="_blank"><i class="fas fa-print text-white"></i></a> 
       <button class="btn btn-outline-light" data-toggle="modal" data-target="#exampleModal">+</button></form>
     </ol>
   </nav>
@@ -73,7 +73,7 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                    <form class="form-prevent" action="/suplemen/tambahsuplemen" method="POST" enctype="multipart/form-data">
+                    <form class="form-prevent" action="{{ route('supplement.store') }}" method="POST" enctype="multipart/form-data">
                       @csrf
                       Kode Suplemen <input type="text" class="form-control" name="kode_suplemen" value="{{ $kode }}" readonly="">
                       Foto Suplemen <input type="file" name="foto_suplemen" class="h-auto form-control"> 
@@ -118,7 +118,7 @@
 
       $.ajax({
         type:'GET',
-        url:'/suplemen/detailtransaksi?id='+$(this).data("id"),
+        url:`{{ route('supplement.transaction') }}?id=${$(this).data("id")}`,
         success: function(result){
           var data = result.suplemen[0];
 
@@ -142,7 +142,7 @@
                                             <img src='${data.foto_suplemen}' class='img-fluid w-100 d-block' alt='${data.foto_suplemen}'>
                                         </div>
                                         <div class=col-md-6>
-                                        <form action='/transaksi/${data.id_suplemen}/suplemen' method='POST'>
+                                        <form action='/transaction/${data.id_suplemen}/supplement' method='POST'>
                                             @csrf
                                             Kode Pesanan
                                             <input type=text name=kode_transaksi value='${result.kode_transaksi}' class=form-control readonly>
@@ -194,7 +194,7 @@
 
       $.ajax({
         type:'GET',
-        url:'/suplemen/detailtambahstoksuplemen',
+        url:'/supplement/stock-detail',
         data:{
           'id':$(this).data('id')
         },
@@ -215,7 +215,7 @@
                                 <div class='row'>
                                   <div class='col'>
 
-                                    <form action='/suplemen/tambahstoksuplemen/${data.id_suplemen}' method='POST'>
+                                    <form action='/supplement/update-stock/${data.id_suplemen}' method='POST'>
                                       @method('PUT')
                                       @csrf
                                       <input type='hidden' value='${data.id_supplier}' name='id_supplier'>
@@ -259,7 +259,7 @@
 
       $.ajax({
         type:'GET',
-        url:'/suplemen/detailsuplemen',
+        url:'/supplement/detail',
         dataType:'json',
         data:{
           'id':$(this).data('id')
@@ -311,7 +311,7 @@
                                   </div>
                                   <div class='h-100'></div>
                                   <div class='col'>
-                                <form class='form-prevent' action='/suplemen/${data.id_suplemen}' method='POST' enctype='multipart/form-data'>
+                                <form class='form-prevent' action='/supplement/${data.id_suplemen}' method='POST' enctype='multipart/form-data'>
                                   @method('PUT')
                                   @csrf
                                  Kode Suplemen <input value='${data.kode_suplemen}' type='text' name='kode_suplemen' class='form-control' readonly>
@@ -332,7 +332,7 @@
                                    <button type='submit' class='btn btn-warning button-prevent'>Ubah Data</button>
                                  </form>
                                  
-                                 <form class='form-prevent' action='/suplemen/${data.id_suplemen}' method='POST'>
+                                 <form class='form-prevent' action='/supplement/${data.id_suplemen}' method='POST'>
                                  @method('DELETE') 
                                  @csrf 
                                  <button type='submit' class='btn btn-danger button-prevent'>Hapus Data</button>

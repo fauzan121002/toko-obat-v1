@@ -32,52 +32,47 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link text-white" href="/dashboard"><i class="fas fa-home mr-1"></i>Dashboard<span class="sr-only">(current)</span></a>
-      </li>
+      </li>   
+      <div class="dropdown">
+        <button class="btn nav-link dropdown-toggle text-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Data Master
+        </button>
 
 
-             
-              <div class="dropdown">
-                <button class="btn nav-link dropdown-toggle text-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Data Master
-                </button>
+      <div class="dropdown-menu bg-danger" aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-header text-white">Data Master :</div>
+            @if (session('level') == 'admin' || session('level') == 'developer')                
+            <a class="nav-link text-white" href="{{ route('cashier.index') }}"><span class="mr-1 ml-2"><i class="fas fa-user-cog"></i></span>Kasir</a>
+            @endif
+            <a class="nav-link text-white" href="{{ route('drug-category.index') }}"><span class="mr-1 ml-2"><i class="fas fa-tablets"></i></span>Kategori</a>
+            <a class="nav-link text-white" href="{{ route('drug-type.index') }}"><span class="mr-1 ml-2"><i class="fas fa-pills"></i></span>Jenis</a>
+            <a class="nav-link text-white" href="{{ route('drug.index') }}"><span class="mr-1 ml-2"><i class="fas fa-tablets"></i></span>Obat</a>
+            <a class="nav-link text-white" href="{{ route('medical-device.index') }}"><span class="mr-1 ml-2"><i class="fas fa-stethoscope"></i></span>Alat Kesehatan</a>
+            <a class="nav-link text-white" href="{{ route('supplement.index') }}"><span class="mr-1 ml-2"><i class="fas fa-capsules"></i></span>Suplemen</a>  
 
+        </div>
+      </div>
 
-              <div class="dropdown-menu bg-danger" aria-labelledby="dropdownMenuButton">
-                <div class="dropdown-header text-white">Data Master :</div>
-                    @if (session('level') == 'admin' || session('level') == 'developer')                
-                    <a class="nav-link text-white" href="/kasir"><span class="mr-1 ml-2"><i class="fas fa-user-cog"></i></span>Kasir</a>
-                    @endif
-                    <a class="nav-link text-white" href="/kategoriobat"><span class="mr-1 ml-2"><i class="fas fa-tablets"></i></span>Kategori</a>
-                    <a class="nav-link text-white" href="/jenisobat"><span class="mr-1 ml-2"><i class="fas fa-pills"></i></span>Jenis</a>
-                    <a class="nav-link text-white" href="/obat"><span class="mr-1 ml-2"><i class="fas fa-tablets"></i></span>Obat</a>
-                    <a class="nav-link text-white" href="/alatkesehatan"><span class="mr-1 ml-2"><i class="fas fa-stethoscope"></i></span>Alat Kesehatan</a>
-                    <a class="nav-link text-white" href="/suplemen"><span class="mr-1 ml-2"><i class="fas fa-capsules"></i></span>Suplemen</a>  
+      <div class="dropdown">
+        <button class="btn nav-link dropdown-toggle text-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Manajemen
+        </button>
 
-                </div>
-              </div>
-
-              <div class="dropdown">
-                <button class="btn nav-link dropdown-toggle text-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Manajemen
-                </button>
-
-                <div class="dropdown-menu bg-danger" aria-labelledby="dropdownMenuButton">
-                  <div class="dropdown-header text-white">Manajemen :</div>
-                  <a class="nav-link text-white" href="/supplier"><span class="mr-1 ml-2"><i class="fas fa-truck"></i></span>Supplier</a>  
-                  <a class="nav-link text-white" href="/riwayattransaksi"><span class="mr-1 ml-2"><i class="fas fa-comment-dollar"></i></span>Riwayat Transaksi</a>
-                  @if (session('level') == 'admin' || session('level') == 'developer')
-                      <a data-toggle="modal" data-target="#ubahpengumuman" class="nav-link text-white"><span class="mr-1 ml-2"><i class="fas fa-plus"></i></span>Update Pengumuman</a>         
-                  @endif
-
-                </div>
-              </div>
+        <div class="dropdown-menu bg-danger" aria-labelledby="dropdownMenuButton">
+          <div class="dropdown-header text-white">Manajemen :</div>
+          <a class="nav-link text-white" href="{{ route('supplier.index') }}"><span class="mr-1 ml-2"><i class="fas fa-truck"></i></span>Supplier</a>  
+          <a class="nav-link text-white" href="{{ route('transaction.index') }}"><span class="mr-1 ml-2"><i class="fas fa-comment-dollar"></i></span>Riwayat Transaksi</a>
+          @if (session('level') == 'admin' || session('level') == 'developer')
+              <a data-toggle="modal" data-target="#notification-update" class="nav-link text-white"><span class="mr-1 ml-2"><i class="fas fa-plus"></i></span>Update Pengumuman</a>         
+          @endif
+        </div>
+      </div>
     </ul>
-
   </div>
 </nav>
 
 @if (session('level') == 'admin' || session('level') == 'developer')
-  <div class="modal fade" id="ubahpengumuman" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="notification-update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -88,7 +83,7 @@
         </div>
         <div class="modal-body">
           <div class="form-group">
-            <form action="/ubahpengumuman" method="POST">
+            <form action="{{ route('notification.update') }}" method="POST">
               @method('PUT')
               @csrf
               <textarea name="isi_pengumuman" class="form-control" id="isi_pengumuman" cols="30" rows="10"></textarea>  
@@ -105,40 +100,51 @@
 @endif
 @show
 
-
 <div class="container-fluid mt-3">
- @if ($errors->any())
-    <div class="alert alert-danger removeAlert">
-        <ol>
-          @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-          @endforeach
-        </ol>
-    </div>
- @endif
+@if ($notification = Session::get('error'))
+  <div class="alert alert-danger alert-block">
+    <button type="button" class="close" data-dismiss="alert">×</button>   
+    <strong>{{ $notification }}</strong>
+  </div>
+@endif
+
+@if ($errors->any())
+  <div class="alert alert-danger alert-block">
+      <button type="button" class="close" data-dismiss="alert">×</button>   
+      <ol>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+      </ol>
+  </div>
+@endif
 
 @if (session('berhasilTambahStok'))
-    <div class="alert alert-success removeAlert">
-        {{ session('berhasilTambahStok') }}
+    <div class="alert alert-success alert-block">
+      <button type="button" class="close" data-dismiss="alert">×</button>   
+      {{ session('berhasilTambahStok') }}
     </div>
 @endif
 @if(session('berhasilTambah'))
-    <div class="alert alert-success removeAlert">
-        {{ session('berhasilTambah') }}
+    <div class="alert alert-success alert-block">
+      <button type="button" class="close" data-dismiss="alert">×</button>   
+      {{ session('berhasilTambah') }}
     </div>
 @endif
 @if(session('berhasilHapus'))
-    <div class="alert alert-success removeAlert">          
-        {{ session('berhasilHapus') }}
+    <div class="alert alert-success alert-block">
+      <button type="button" class="close" data-dismiss="alert">×</button>           
+      {{ session('berhasilHapus') }}
     </div>
 @endif
 @if (session('berhasilUbah'))
-    <div class="alert alert-success removeAlert">          
-        {{ session('berhasilUbah') }}
+    <div class="alert alert-success alert-block">
+      <button type="button" class="close" data-dismiss="alert">×</button>       
+      {{ session('berhasilUbah') }}
     </div>
 @endif
 
-  @yield('content')
+@yield('content')
 </div>
 
 @section('footer')

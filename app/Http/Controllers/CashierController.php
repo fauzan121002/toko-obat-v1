@@ -3,24 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Kasir;
+use App\Cashier;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Carbon;
 use Response;
 
 class CashierController extends Controller {
     public function index(){   
         if(Session::has('email')){
             if (session('level') == 'admin' || session('level') == 'developer'){        
-                $kasir = kasir::paginate(5);
-                $kodeksr = kasir::orderBy('kode_kasir','DESC')->first();
-                return view('feature/kasir',['kasir'=>$kasir])->with(['kodeksr'=>$kodeksr]);
+                $kasir = Cashier::paginate(5);
+                $kodeksr = Cashier::orderBy('kode_kasir','DESC')->first();
+                return view('feature/cashier',['kasir'=>$kasir])->with(['kodeksr'=>$kodeksr]);
             }else{
                 return redirect()->back();
             }       
         }else{
-            return redirect()->route('formlogin');
+            return redirect()->route('login');
         }         
     }
 
@@ -45,7 +44,7 @@ class CashierController extends Controller {
              'alamat'=>'required|min:1|max:80'
         ],$message);
             $email = $request->email;
-            $kasir = kasir::where('email',$email)->first();
+            $kasir = Cashier::where('email',$email)->first();
 
             // $namakasir = [$request->nama_kasir,$request->nama_kasir];
             // array_push($namakasir,"Namanya");
@@ -61,7 +60,7 @@ class CashierController extends Controller {
             $path = $file->move($tujuan_upload,$file->getClientOriginalName());
 
 
-            kasir::create([
+            Cashier::create([
                 'kode_kasir'=>$request->kode_kasir,
                 'foto_kasir'=>$path,
                 'nama_kasir'=>$request->nama_kasir,
@@ -75,11 +74,19 @@ class CashierController extends Controller {
                 'jumlah_transaksi'=>"0"
             ]);
 
-           return redirect('/kasir')->with('berhasilTambah','Data Berhasil Ditambahkan!');            
+           return redirect('/cashier')->with('berhasilTambah','Data Berhasil Ditambahkan!');            
         }
-
-
     }
+
+    public function getModalCashierData(Request $request){
+        if(Session::has('email')){           
+            $kasir = Cashier::where('id_kasir',$request->id)->get();
+            return Response()->json($kasir);
+        }else{
+            return redirect()->route('login');             
+        }
+    }
+    
     /**
      * Update the specified resource in storage.
      *
@@ -109,7 +116,7 @@ class CashierController extends Controller {
 
 
 
-        $kasir = kasir::find($id);
+        $kasir = Cashier::find($id);
         if($request->file('foto_kasir') != null){
 
             $file = $request->file('foto_kasir');
@@ -118,7 +125,7 @@ class CashierController extends Controller {
             
             $move = $file->move($dir,$file->getClientOriginalName());
             
-            File::delete($kasir->foto_kasir);
+            \File::delete($kasir->foto_kasir);
             
             $kasir->foto_kasir = $move;
 
@@ -131,7 +138,7 @@ class CashierController extends Controller {
         $kasir->nomor_telepon = $request->nomor_telepon;
         $kasir->alamat = $request->alamat;
         $kasir->save();
-        return redirect('/kasir')->with('berhasilUbah','Data Berhasil Diubah!');
+        return redirect('/cashier')->with('berhasilUbah','Data Berhasil Diubah!');
     }
 
     /**
@@ -142,11 +149,11 @@ class CashierController extends Controller {
      */
     public function destroy($id)
     {
-        $hapusFileFotoKasir = kasir::where('id_kasir',$id)->first();
-        File::delete($hapusFileFotoKasir->foto_kasir);
+        $hapusFileFotoKasir = Cashier::where('id_kasir',$id)->first();
+        \File::delete($hapusFileFotoKasir->foto_kasir);
 
-        kasir::where('id_kasir',$id)->delete();
+        Cashier::where('id_kasir',$id)->delete();
 
-        return redirect('/kasir')->with('berhasilHapus','Data Berhasil Dihapus!');
+        return redirect('/cashier')->with('berhasilHapus','Data Berhasil Dihapus!');
     }
 }

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Pengumuman extends Model
+class Notification extends Model
 {
     protected $table = "pengumuman";
 

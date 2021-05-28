@@ -12,7 +12,7 @@
  <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
      <li class="breadcrumb-item active ml-auto" aria-current="page">     
-      <a class="btn btn-outline-light" href="{{ route('laporan.jenis') }}" target="_blank"><i class="fas fa-print text-white"></i></a>
+      <a class="btn btn-outline-light" href="{{ route('report.drug-type') }}" target="_blank"><i class="fas fa-print text-white"></i></a>
       <button class="btn btn-outline-light" data-toggle="modal" data-target="#exampleModal">+</button></form>
     </ol>
   </nav>
@@ -58,7 +58,7 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                    <form class="form-prevent" action="/jenisobat/tambahjenisobat" method="POST">
+                    <form class="form-prevent" action="{{ route('drug-type.store') }}" method="POST">
                       @csrf
                       Kode Jenis Obat <input type="text" class="form-control" name="kode_jenisobat" value="{{ $kode }}" readonly="">
                       Nama Jenis Obat <input type="text" class="form-control" name="nama_jenisobat">
@@ -90,7 +90,7 @@
       
       $.ajax({
         type:'GET',
-        url:'/jenisobat/detailjenisobat?id='+$(this).data("id"),
+        url:'/drug-type/detail?id='+$(this).data("id"),
         success: function(result){
           var data = result[0];
 
@@ -105,7 +105,7 @@
                               </button>
                             </div>
                             <div class='modal-body'>
-                                <form class='form-prevent' action='/jenisobat/${data.id_jenisobat}' method='POST' enctype='multipart/form-data'>
+                                <form class='form-prevent' action='/drug-type/${data.id_jenisobat}' method='POST' enctype='multipart/form-data'>
                                   @method('PUT')
                                   @csrf
                                  Kode Jenis obat <input value='${data.kode_jenisobat}' type='text' name='kode_jenisobat' class='form-control' readonly>
@@ -115,7 +115,7 @@
                                    <button type='submit' class='btn btn-warning button-prevent'>Ubah Data</button>
                                  </form>
                                  
-                                 <form class='form-prevent' action='/jenisobat/${data.id_jenisobat}' method='POST'>
+                                 <form class='form-prevent' action='/drug-type/${data.id_jenisobat}' method='POST'>
                                  @method('DELETE') 
                                  @csrf 
                                  <button type='submit' class='btn btn-danger button-prevent'>Hapus Data</button>

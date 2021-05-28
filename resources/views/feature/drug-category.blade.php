@@ -12,7 +12,7 @@
  <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
      <li class="breadcrumb-item active ml-auto" aria-current="page">     
-      <a class="btn btn-outline-light" href="{{ route('laporan.kategori') }}" target="_blank"><i class="fas fa-print text-white"></i></a>
+      <a class="btn btn-outline-light" href="{{ route('report.drug-category') }}" target="_blank"><i class="fas fa-print text-white"></i></a>
       <button class="btn btn-outline-light" data-toggle="modal" data-target="#exampleModal">+</button></form>
     </ol>
   </nav>
@@ -58,7 +58,7 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                    <form class="form-prevent" action="/kategoriobat/tambahkategoriobat" method="POST">
+                    <form class="form-prevent" action="{{ route('drug-category.store') }}" method="POST">
                       @csrf
                       Kode Kategori Obat <input type="text" class="form-control" name="kode_kategoriobat" value="{{ $kode }}" readonly="">
                       Nama Kategori Obat <input type="text" class="form-control" name="nama_kategoriobat">
@@ -90,7 +90,7 @@
       
       $.ajax({
         type:'GET',
-        url:'/kategoriobat/detailkategoriobat?id='+$(this).data("id"),
+        url:'/drug-category/detail?id='+$(this).data("id"),
         success: function(result){
           var data = result[0];
 
@@ -105,7 +105,7 @@
                               </button>
                             </div>
                             <div class='modal-body'>
-                                <form class='form-prevent' action='/kategoriobat/${data.id_kategoriobat}' method='POST' enctype='multipart/form-data'>
+                                <form class='form-prevent' action='/drug-category/${data.id_kategoriobat}' method='POST' enctype='multipart/form-data'>
                                   @method('PUT')
                                   @csrf
                                  Kode kategori obat <input value='${data.kode_kategoriobat}' type='text' name='kode_kategoriobat' class='form-control' readonly=''>
@@ -115,7 +115,7 @@
                                    <button type='submit' class='btn btn-warning button-prevent'>Ubah Data</button>
                                  </form>
                                  
-                                 <form class='form-prevent' action='/kategoriobat/${data.id_kategoriobat}' method='POST'>
+                                 <form class='form-prevent' action='/drug-category/${data.id_kategoriobat}' method='POST'>
                                  @method('DELETE') 
                                  @csrf 
                                  <button type='submit' class='btn btn-danger button-prevent'>Hapus Data</button>

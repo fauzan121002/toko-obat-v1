@@ -10,7 +10,7 @@
  <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
      <li class="breadcrumb-item active ml-auto" aria-current="page">   
-      <a class="btn btn-outline-light" href="{{ route('laporan.obat') }}" target="_blank"><i class="fas fa-print text-white"></i></a>  
+      <a class="btn btn-outline-light" href="{{ route('report.drug') }}" target="_blank"><i class="fas fa-print text-white"></i></a>  
       <button class="btn btn-outline-light" data-toggle="modal" data-target="#exampleModal">{{ Session::get('obat') }}+</button></form>
     </ol>
   </nav>
@@ -73,7 +73,7 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                    <form class="form-prevent" action="/obat/tambahobat" method="POST" enctype="multipart/form-data">
+                    <form class="form-prevent" action="{{ route('drug.store') }}" method="POST" enctype="multipart/form-data">
                       @csrf
                       Kode Obat <input type="text" class="form-control" name="kode_obat" value="{{ $kode }}" readonly="">
                       Foto Obat <input type="file" name="foto_obat" class="h-auto form-control"> 
@@ -146,7 +146,7 @@
 
       $.ajax({
         type:'GET',
-        url:'/obat/detailtransaksi?id='+$(this).data("id"),
+        url:`{{ route('drug.transaction') }}?id=${$(this).data("id")}`,
         success: function(result){
           var data = result.obat[0];
 
@@ -170,7 +170,7 @@
                                             <img src='${data.foto_obat}' class='img-fluid w-100 d-block' alt='${data.foto_obat}'>
                                         </div>
                                         <div class=col-md-6>
-                                        <form action='/transaksi/${data.id_obat}/obat' method='POST'>
+                                        <form action='/transaction/${data.id_obat}/drug' method='POST'>
                                             @csrf
                                             Kode Pesanan
                                             <input type=text name=kode_transaksi value='${result.kode_transaksi}' class=form-control readonly>
@@ -224,7 +224,7 @@
 
       $.ajax({
         type:'GET',
-        url:'/obat/detailtambahstokobat?id='+$(this).data("id"),
+        url:'/drug/stock-detail?id='+$(this).data("id"),
         success: function(result){
           var data = result[0];
           var tambahstokmodal = `
@@ -242,7 +242,7 @@
                                 <div class='row'>
                                   <div class='col'>
 
-                                    <form class='form-prevent' action='/obat/tambahstokobat/${data.id_obat}' method='POST'>
+                                    <form class='form-prevent' action='/drug/update-stock/${data.id_obat}' method='POST'>
                                       @method('PUT')
                                       @csrf
                                       <input type='hidden' value='${data.id_supplier}' name='id_supplier'>
@@ -287,7 +287,7 @@
 
       $.ajax({
         type:'GET',
-        url:'/obat/detailobat?id='+$(this).data("id"),
+        url:'/drug/detail?id='+$(this).data("id"),
         success: function(result){
           var obat = result.obat[0];
           var jenisobat = result.jenisobat;
@@ -339,7 +339,7 @@
 
                         modaldetail += `<div class=h-100></div>
                                   <div class=col>
-                                <form class=form-prevent action=/obat/${obat.id_obat} method=POST enctype=multipart/form-data>
+                                <form class=form-prevent action=/drug/${obat.id_obat} method=POST enctype=multipart/form-data>
                                 @method('PUT')
                                 @csrf
                                  Kode Obat <input value='${obat.kode_obat}' type=text name=kode_obat class='form-control' readonly>
@@ -391,7 +391,7 @@
                                    <button type=submit class='btn btn-warning button-prevent'>Ubah Data</button>
                                  </form>
                                  
-                                 <form class=form-prevent action=/obat/${obat.id_obat} method=POST>
+                                 <form class=form-prevent action=/drug/${obat.id_obat} method=POST>
                                  @method('DELETE')
                                  @csrf
                                  <button type=submit class='btn btn-danger button-prevent'>Hapus Data</button>

@@ -12,7 +12,7 @@
  <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
      <li class="breadcrumb-item active ml-auto" aria-current="page">     
-      <a class="btn btn-outline-light" href="{{ route('laporan.alat-kesehatan') }}" target="_blank"><i class="fas fa-print text-white"></i></a> 
+      <a class="btn btn-outline-light" href="{{ route('report.medical-device') }}" target="_blank"><i class="fas fa-print text-white"></i></a> 
       <button class="btn btn-outline-light" data-toggle="modal" data-target="#exampleModal">+</button></form>
     </ol>
   </nav>
@@ -74,7 +74,7 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                    <form class="form-prevent" action="/alatkesehatan/tambahalatkesehatan" method="POST" enctype="multipart/form-data">
+                    <form class="form-prevent" action="{{ route('medical-device.store') }}" method="POST" enctype="multipart/form-data">
                       @csrf
                       Kode Alat Kesehatan <input type="text" class="form-control" name="kode_alatkesehatan" value="{{ $kode }}" readonly="">
                       Foto Alat Kesehatan <input type="file" name="foto_alatkesehatan" class="h-auto form-control"> 
@@ -120,7 +120,7 @@
 
       $.ajax({
         type:'GET',
-        url:'/alatkesehatan/detailtransaksi?id='+$(this).data("id"),
+        url:`{{ route('medical-device.transaction') }}?id=${$(this).data("id")}`,
         success: function(result){
           var data = result.alatkesehatan[0];
 
@@ -144,7 +144,7 @@
                                             <img src='${data.foto_alatkesehatan}' class='img-fluid w-100 d-block' alt='${data.foto_alatkesehatan}'>
                                         </div>
                                         <div class=col-md-6>
-                                        <form action='/transaksi/${data.id_alatkesehatan}/alatkesehatan' method='POST'>
+                                        <form action='/transaction/${data.id_alatkesehatan}/medical-device' method='POST'>
                                             @csrf
                                             Kode Pesanan
                                             <input type=text name=kode_transaksi value='${result.kode_transaksi}' class=form-control readonly>
@@ -197,7 +197,7 @@
 
       $.ajax({
         type:'GET',
-        url:'/alatkesehatan/detailtambahstokalatkesehatan',
+        url:'/medical-device/stock-detail',
         data:{
           'id':$(this).data('id')
         },
@@ -218,11 +218,11 @@
                                 <div class='row'>
                                   <div class='col'>
 
-                                    <form action='/alatkesehatan/tambahstokalatkesehatan/${data.id_alatkesehatan}' method='POST'>
+                                    <form action='/medical-device/update-stock/${data.id_alatkesehatan}' method='POST'>
                                       @method('PUT')
                                       @csrf
                                       <input type='hidden' value='${data.id_supplier}' name='id_supplier'>
-                                      Tambah Stok Obat <input type='number' name='stok' class='form-control mb-3' required>
+                                      Tambah Stok Alat Kesehatan <input type='number' name='stok' class='form-control mb-3' required>
                                       <button class='btn btn-primary' type='submit'>Tambah</button>
                                       <button type='button' class='btn btn-secondary' data-dismiss='modal'>Tutup</button>
                                     </form>
@@ -260,7 +260,7 @@
 
       $.ajax({
         type:'GET',
-        url:'/alatkesehatan/detailalatkesehatan',
+        url:'/medical-device/detail',
         data:{
           'id':$(this).data('id')
         },
@@ -311,7 +311,7 @@
                                   </div>
                                   <div class='h-100'></div>
                                   <div class='col'>
-                                <form class='form-prevent' action='/alatkesehatan/${data.id_alatkesehatan}' method='POST' enctype='multipart/form-data'>
+                                <form class='form-prevent' action='/medical-device/${data.id_alatkesehatan}' method='POST' enctype='multipart/form-data'>
                                   @method('PUT')
                                   @csrf
                                  Kode Obat <input value='${data.kode_alatkesehatan}' type='text' name='kode_alatkesehatan' class='form-control' readonly>
@@ -332,7 +332,7 @@
                                    <button type='submit' class='btn btn-warning button-prevent'>Ubah Data</button>
                                  </form>
                                  
-                                 <form class='form-prevent' action='/alatkesehatan/${data.id_alatkesehatan}' method='POST'>
+                                 <form class='form-prevent' action='/medical-device/${data.id_alatkesehatan}' method='POST'>
                                  @method('DELETE') 
                                  @csrf 
                                  <button type='submit' class='btn btn-danger button-prevent'>Hapus Data</button>

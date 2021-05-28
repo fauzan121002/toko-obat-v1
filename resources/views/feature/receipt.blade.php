@@ -68,19 +68,19 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 @if ($barang === "obat")
     <script>
-        setTimeout(window.location.replace('/obat'),100);            
+        setTimeout(window.location.replace("{{ route('drug.index') }}"),100);            
     </script>
 @endif
 
 @if ($barang === "suplemen")
     <script>
-        setTimeout(window.location.replace('/suplemen'),100);        
+        setTimeout(window.location.replace("{{ route('supplement.index') }}"),100);        
     </script>
 @endif
 
 @if ($barang === "alatkesehatan")
     <script>
-        setTimeout(window.location.replace('/alatkesehatan'),100);        
+        setTimeout(window.location.replace("{{ route('medical-device.index') }}"),100);        
     </script>
 @endif
 
