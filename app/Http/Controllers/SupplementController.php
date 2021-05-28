@@ -57,7 +57,7 @@ class SupplementController extends Controller {
             "total_pemasukan"=>0
         ]);
 
-        return redirect('/supplement')->with('berhasilTambah','Data Berhasil Ditambahkan!');   
+        return redirect('/supplement')->with('itemAdded','Data Berhasil Ditambahkan!');   
     }
 
     public function getModalSupplement(Request $request){
@@ -114,7 +114,7 @@ class SupplementController extends Controller {
         $suplemen->save();
         $supplier->save();
 
-        return redirect('/supplement')->with('berhasilTambahStok','Stok Berhasil Ditambahkan!');
+        return redirect('/supplement')->with('stockUpdated','Stok Berhasil Ditambahkan!');
     }     
 
     public function update($id,Request $request){
@@ -154,7 +154,7 @@ class SupplementController extends Controller {
 
         $suplemen->save(); 
 
-        return redirect('/supplement')->with('berhasilUbah','Data Berhasil Diubah!');
+        return redirect('/supplement')->with('itemUpdated','Data Berhasil Diubah!');
     }
 
     public function destroy($id){
@@ -162,6 +162,6 @@ class SupplementController extends Controller {
         \File::delete($suplemen->foto_suplemen);
 
         $suplemen->delete();
-        return redirect('/supplement')->with('berhasilHapus','Data Berhasil Dihapus!');
+        return redirect('/supplement')->with('itemDeleted','Data Berhasil Dihapus!');
     }
 }

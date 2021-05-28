@@ -23,6 +23,6 @@ class NotificationController extends Controller {
         $pengumuman->isi_pengumuman = $request->isi_pengumuman;
         $pengumuman->save();
 
-        return redirect('/dashboard')->with('berhasilUbah','Pengumuman Berhasil Diubah!');
+        return redirect('/dashboard')->with('itemUpdated','Pengumuman Berhasil Diubah!');
     }
 }

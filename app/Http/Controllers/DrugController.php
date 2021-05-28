@@ -72,7 +72,7 @@ class DrugController extends Controller {
             'total_pemasukan'=>0    
         ]);
 
-        return redirect('/drug')->with('berhasilTambah','Data Berhasil Ditambahkan!');
+        return redirect('/drug')->with('itemAdded','Data Berhasil Ditambahkan!');
     }
 
     public function getModalDrug(Request $request){
@@ -147,7 +147,7 @@ class DrugController extends Controller {
         $obat->save();
         $supplier->save();        
 
-        return redirect('/drug')->with('berhasilTambahStok','Stok Berhasil Ditambahkan!');
+        return redirect('/drug')->with('stockUpdated','Stok Berhasil Ditambahkan!');
     }
 
     public function update($id,Request $request){
@@ -193,7 +193,7 @@ class DrugController extends Controller {
 
         $obat->save();
 
-        return redirect('/drug')->with('berhasilUbah','Data Berhasil Diubah!');
+        return redirect('/drug')->with('itemUpdated','Data Berhasil Diubah!');
     }
 
     public function destroy($id){
@@ -202,6 +202,6 @@ class DrugController extends Controller {
 
         Drug::find($id)->delete();
 
-       return redirect('/drug')->with('berhasilHapus','Data Berhasil Dihapus!');
+       return redirect('/drug')->with('itemDeleted','Data Berhasil Dihapus!');
     }
 }

@@ -74,7 +74,7 @@ class CashierController extends Controller {
                 'jumlah_transaksi'=>"0"
             ]);
 
-           return redirect('/cashier')->with('berhasilTambah','Data Berhasil Ditambahkan!');            
+           return redirect('/cashier')->with('itemAdded','Data Berhasil Ditambahkan!');            
         }
     }
 
@@ -138,7 +138,7 @@ class CashierController extends Controller {
         $kasir->nomor_telepon = $request->nomor_telepon;
         $kasir->alamat = $request->alamat;
         $kasir->save();
-        return redirect('/cashier')->with('berhasilUbah','Data Berhasil Diubah!');
+        return redirect('/cashier')->with('itemUpdated','Data Berhasil Diubah!');
     }
 
     /**
@@ -154,6 +154,6 @@ class CashierController extends Controller {
 
         Cashier::where('id_kasir',$id)->delete();
 
-        return redirect('/cashier')->with('berhasilHapus','Data Berhasil Dihapus!');
+        return redirect('/cashier')->with('itemDeleted','Data Berhasil Dihapus!');
     }
 }

@@ -40,7 +40,7 @@ class DrugTypeController extends Controller {
             "deskripsi_jenisobat"=>$request->deskripsi_jenisobat
         ]);
 
-        return redirect('/drug-type')->with('berhasilTambah','Data Berhasil Ditambahkan!');
+        return redirect('/drug-type')->with('itemAdded','Data Berhasil Ditambahkan!');
     }
 
     public function getModalDrugTypes(Request $request){
@@ -70,12 +70,12 @@ class DrugTypeController extends Controller {
 
         $jenisobat->save();
 
-        return redirect('/drug-type')->with('berhasilUbah','Data Berhasil Diubah!');
+        return redirect('/drug-type')->with('itemUpdated','Data Berhasil Diubah!');
     }
 
     public function destroy($id){
         DrugType::find($id)->delete();
 
-        return redirect('/drug-type')->with('berhasilHapus','Data Berhasil Dihapus!');
+        return redirect('/drug-type')->with('itemDeleted','Data Berhasil Dihapus!');
     }
 }

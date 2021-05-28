@@ -38,7 +38,7 @@ class SupplierController extends Controller {
             "jumlah_pengiriman"=>0
         ]);
 
-        return redirect('/supplier')->with('berhasilTambah','Data Berhasil Ditambahkan!');
+        return redirect('/supplier')->with('itemAdded','Data Berhasil Ditambahkan!');
     }
 
     public function getModalSupplier(Request $request){
@@ -69,13 +69,13 @@ class SupplierController extends Controller {
 
         $supplier->save();
 
-        return redirect('/supplier')->with('berhasilUbah','Data Berhasil Diubahkan!');
+        return redirect('/supplier')->with('itemUpdated','Data Berhasil Diubahkan!');
 
     }
 
     public function destroy($id){
         Supplier::where('id_supplier',$id)->delete();
 
-        return redirect('/supplier')->with('berhasilHapus','Data Berhasil Dihapus!');
+        return redirect('/supplier')->with('itemDeleted','Data Berhasil Dihapus!');
     }
 }

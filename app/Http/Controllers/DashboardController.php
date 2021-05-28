@@ -26,14 +26,13 @@ class DashboardController extends Controller
 
     public function dashboard(){
         if(Session::has('email')){
-            $pengumumanget = Notification::orderBy('id_pengumuman','ASC')->first();
-            $pengumuman = $pengumumanget->isi_pengumuman;       
+            $pengumuman = Notification::orderBy('id_pengumuman','ASC')->first();      
             $total_transaksi = Transaction::count("id_transaksi");
             $uang_diterima = Transaction::max("uang_diterima");
             $jumlah_kasir = Cashier::count('id_kasir');
             $transaksi_bulanan = Transaction::whereMonth('created_at',now()->format('m'))->count('id_transaksi');
 
-            return view('dashboard',["pengumuman"=>$pengumuman])          
+            return view('dashboard',["pengumuman" => $pengumuman])          
             ->with('total_transaksi',$total_transaksi)
             ->with('uang_diterima',$uang_diterima)
             ->with('jumlah_kasir',$jumlah_kasir)

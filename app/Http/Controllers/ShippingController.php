@@ -22,6 +22,6 @@ class ShippingController extends Controller {
     public function destroy($id){
         ShippingHistory::find($id)->delete();
 
-        return redirect('/shipping-history')->with('berhasilHapus','Riwayat Pengiriman Berhasil Dihapus!');        
+        return redirect('/shipping-history')->with('itemDeleted','Riwayat Pengiriman Berhasil Dihapus!');        
     }
 }

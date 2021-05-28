@@ -58,7 +58,7 @@ class MedicalDeviceController extends Controller {
             "total_pemasukan"=>0
         ]);
 
-        return redirect('/medical-device')->with('berhasilTambah','Data Berhasil Ditambahkan!');
+        return redirect('/medical-device')->with('itemAdded','Data Berhasil Ditambahkan!');
     }
 
     public function getModalMedicalDevice(Request $request){
@@ -116,7 +116,7 @@ class MedicalDeviceController extends Controller {
         $alatkesehatan->save();
         $supplier->save();
 
-        return redirect('/medical-device')->with('berhasilTambahStok','Stok Berhasil Ditambahkan!');
+        return redirect('/medical-device')->with('stockUpdated','Stok Berhasil Ditambahkan!');
     }    
 
     public function update($id,Request $request){
@@ -156,7 +156,7 @@ class MedicalDeviceController extends Controller {
 
         $alatkesehatan->save();
 
-        return redirect('/medical-device')->with('berhasilUbah','Data Berhasil Diubah!');
+        return redirect('/medical-device')->with('itemUpdated','Data Berhasil Diubah!');
     }
 
     public function destroy($id){
@@ -164,6 +164,6 @@ class MedicalDeviceController extends Controller {
         \File::delete($alatkesehatan->foto_alatkesehatan);
 
         $alatkesehatan->delete();
-        return redirect('/medical-device')->with('berhasilHapus','Data Berhasil Dihapus!');
+        return redirect('/medical-device')->with('itemDeleted','Data Berhasil Dihapus!');
     }
 }

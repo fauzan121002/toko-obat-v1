@@ -35,7 +35,7 @@ class DrugCategoryController extends Controller {
             'deskripsi_kategoriobat'=>$request->deskripsi_kategoriobat
         ]);
 
-        return redirect('/drug-category')->with('berhasilTambah','Data Berhasil Ditambahkan!');
+        return redirect('/drug-category')->with('itemAdded','Data Berhasil Ditambahkan!');
     }
 
     public function getModalDrugCategory(Request $request){
@@ -62,12 +62,12 @@ class DrugCategoryController extends Controller {
         $kategoriobat->deskripsi_kategoriobat = $request->deskripsi_kategoriobat;
         $kategoriobat->save();
 
-        return redirect('/drug-category')->with('berhasilUbah','Data Berhasil Diubah!');
+        return redirect('/drug-category')->with('itemUpdated','Data Berhasil Diubah!');
     }
 
     public function destroy($id){
         DrugCategory::where('id_kategoriobat',$id)->delete();
 
-        return redirect('/drug-category')->with('berhasilHapus','Data Berhasil Dihapus!');
+        return redirect('/drug-category')->with('itemDeleted','Data Berhasil Dihapus!');
     }
 }
