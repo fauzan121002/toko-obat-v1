@@ -14,9 +14,7 @@
 </head>
 <body>
 <div class="page-wrapper chiller-theme toggled">
-  <div id="show-sidebar" class="btn btn-sm btn-dark text-white">
-    <i class="fas fa-bars"></i>
-  </div>
+  <div id="show-sidebar" class="btn rounded-0 btn-sm btn-dark text-white"></div>
   <aside id="sidebar" class="sidebar-wrapper">
   <div class="sidebar">
     <div class="sidebar-content">

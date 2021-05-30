@@ -157,7 +157,6 @@ body {
 #show-sidebar {
     position: fixed;
     left: 0;
-    border-radius: 0 4px 4px 0px;
     width: 35px;
     height: 100%;
     z-index: 9999;
