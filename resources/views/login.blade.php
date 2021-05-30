@@ -36,7 +36,7 @@
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
 				<form class="login100-form validate-form" action="/login" method="POST">
 					@csrf
-					<span class="login100-form-title p-b-33 text-danger">
+					<span class="login100-form-title p-b-33 text-info">
 						Smartpharmacy
 					</span>
 					@if (session('gagalLogin'))
@@ -58,7 +58,7 @@
 					</div>
 
 					<div class="container-login100-form-btn m-t-20">
-						<button type="submit" class="btn btn-outline-danger w-100 text-danger">
+						<button type="submit" class="btn btn-outline-info w-100 text-info">
 							Log in
 						</button>
 					</div>
@@ -69,7 +69,7 @@
 							Lupa
 						</span>
 
-						<a href="#" class="txt2 hov1 text-danger">
+						<a href="#" class="txt2 hov1 text-info">
 							Username / Password?
 						</a>
 					</div>
