@@ -154,7 +154,6 @@
       </div>
     </nav>
 
-    @yield('content')
     @if (session('level') == 'admin' || session('level') == 'developer')
       <div class="modal fade" id="notification-update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -227,6 +226,8 @@
             {{ session('itemUpdated') }}
           </div>
       @endif
+
+      @yield('content')
     </div>
   </div>
 </div>
