@@ -10,101 +10,99 @@ date_default_timezone_set('Asia/Jakarta');
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::group(['middleware'=>'kasirAuth'],function(){
-Route::get('/','tokoobatController@login')->name('formlogin');
-Route::get('/dashboard','tokoobatController@dashboard')->name('dashboard');
-Route::get('/kasir','tokoobatController@kasir');
-Route::get('/obat','tokoobatController@obat');
-Route::get('/jenisobat','tokoobatController@jenisObat');
-Route::get('/kategoriobat','tokoobatController@kategoriObat');
-Route::get('/alatkesehatan','tokoobatController@alatKesehatan');
-Route::get('/pelanggan','tokoobatController@pelanggan');
-Route::get('/suplemen','tokoobatController@suplemen');
-Route::get('/supplier','tokoobatController@supplier');
-Route::put('/ubahpengumuman','featureController@ubahpengumuman');
-Route::get('/customstruk','tokoobatController@customstruk');
-Route::get('/riwayattransaksi',function(App\transaksi $transaksi){
-    // dd($transaksi->all());
-    return view('feature.riwayattransaksi',['transaksi'=>$transaksi->select('kode_transaksi','nama_pesanan','jumlah_pesanan','uang_diterima','nama_kasir')->paginate(5)]);
-});
-
-Route::post('/transaksi/{id}/{barang}','tokoobatController@transaksi');
-Route::post('/cart','tokoobatController@cart');
-// });
-Route::get('/riwayatpengiriman','tokoobatController@riwayatpengiriman');
-Route::delete('/hapusriwayatpengiriman/{id}','featureController@hapusriwayatpengiriman');
-
-Route::prefix('/kasir')->group(function(){
-	Route::get('/detailkasir','tokoobatController@getModalDataKasir');
-	Route::post('/tambahdatakasir','featureController@tambahdatakasir');
-	Route::delete('/{id}','featureController@hapusdatakasir');
-	Route::put('/{id}','featureController@ubahdatakasir');
-});
-
-Route::prefix('/kategoriobat')->group(function(){
-	Route::get('/detailkategoriobat','tokoobatController@getModalKategoriObat');
-	Route::post('/tambahkategoriobat','featureController@tambahkategoriobat');
-	Route::delete('/{id}','featureController@hapuskategoriobat');
-	Route::put('/{id}','featureController@ubahkategoriobat');
-});
-
-Route::prefix('/jenisobat')->group(function(){
-	Route::get('/detailjenisobat','tokoobatController@getModalJenisObat');
-	Route::post('/tambahjenisobat','featureController@tambahjenisobat');
-	Route::delete('/{id}','featureController@hapusjenisobat');
-	Route::put('/{id}','featureController@ubahjenisobat');
-});
-
-Route::prefix('/obat')->group(function(){
-	Route::get('/detailobat','tokoobatController@getModalObat');
-	Route::post('/tambahobat','featureController@tambahobat');
-	Route::delete('/{id}','featureController@hapusobat');
-	Route::put('/{id}','featureController@ubahobat');
-
-	Route::get('/detailtambahstokobat','tokoobatController@getModalStokObat');
-	Route::put('/tambahstokobat/{id}','featureController@tambahstokobat');
-	Route::get('/detailtransaksi','tokoobatController@getModalTransaksiObat');
-});
-
-Route::prefix('/supplier')->group(function(){
-	Route::get('/detailsupplier','tokoobatController@getModalSupplier');
-	Route::post('/tambahsupplier','featureController@tambahsupplier');
-	Route::delete('/{id}','featureController@hapussupplier');
-	Route::put('/{id}','featureController@ubahsupplier');
-});
-
-Route::prefix('/alatkesehatan')->group(function(){
-	Route::get('/detailalatkesehatan','tokoobatController@getModalAlatKesehatan');
-	Route::post('/tambahalatkesehatan','featureController@tambahalatkesehatan');
-	Route::delete('/{id}','featureController@hapusalatkesehatan');
-	Route::put('/{id}','featureController@ubahalatkesehatan');
-
-	Route::get('/detailtambahstokalatkesehatan','tokoobatController@getModalStokAlatKesehatan');
-	Route::put('/tambahstokalatkesehatan/{id}','featureController@tambahstokalatkesehatan');	
-	Route::get('/detailtransaksi','tokoobatController@getModalTransaksiAlatKesehatan');
-});
-
-Route::prefix('/suplemen')->group(function(){
-	Route::get('/detailsuplemen','tokoobatController@getModalSuplemen');
-	Route::post('/tambahsuplemen','featureController@tambahsuplemen');
-	Route::delete('/{id}','featureController@hapussuplemen');
-	Route::put('/{id}','featureController@ubahsuplemen');
-
-	Route::get('/detailtambahstoksuplemen','tokoobatController@getModalStokSuplemen');
-	Route::put('/tambahstoksuplemen/{id}','featureController@tambahstoksuplemen');		
-	Route::get('/detailtransaksi','tokoobatController@getModalTransaksiSuplemen');
-});
-
-Route::prefix('/laporan')->group(function(){
-    Route::get('/kasir','PDFController@laporan_kasir')->name('laporan.kasir');
-    Route::get('/kategori','PDFController@laporan_kategori')->name('laporan.kategori');
-    Route::get('/jenis','PDFController@laporan_jenis')->name('laporan.jenis');
-    Route::get('/obat','PDFController@laporan_obat')->name('laporan.obat');
-    Route::get('/alat-kesehatan','PDFController@laporan_alatkesehatan')->name('laporan.alat-kesehatan');
-    Route::get('/suplemen','PDFController@laporan_suplemen')->name('laporan.suplemen');
-    Route::get('/supplier','PDFController@laporan_supplier')->name('laporan.supplier');
-});
 
 Route::post('/login','AuthController@login');
 Route::post('/logout','AuthController@logout');
 
+Route::get('/','DashboardController@login')->name('login');
+Route::get('/dashboard','DashboardController@dashboard')->name('dashboard');
+
+Route::prefix('/cashier')->group(function(){
+	Route::get('/','CashierController@index')->name('cashier.index');
+	Route::get('/detail','CashierController@getModalCashierData')->name('cashier.detail');
+	Route::post('/','CashierController@store')->name('cashier.store');
+	Route::put('/{id}','CashierController@update')->name('cashier.update');
+	Route::delete('/{id}','CashierController@destroy')->name('cashier.destroy');
+});
+
+Route::prefix('/drug-category')->group(function(){
+	Route::get('/','DrugCategoryController@index')->name('drug-category.index');
+	Route::get('/detail','DrugCategoryController@getModalDrugCategory')->name('drug-category.detail');
+	Route::post('/','DrugCategoryController@store')->name('drug-category.store');
+	Route::put('/{id}','DrugCategoryController@update')->name('drug-category.update');
+	Route::delete('/{id}','DrugCategoryController@destroy')->name('drug-category.destroy');
+});
+
+Route::prefix('/drug-type')->group(function(){
+	Route::get('/','DrugTypeController@index')->name('drug-type.index');
+	Route::get('/detail','DrugTypeController@getModalDrugType')->name('drug-type.detail');
+	Route::post('/','DrugTypeController@store')->name('drug-type.store');
+	Route::put('/{id}','DrugTypeController@update')->name('drug-type.update');
+	Route::delete('/{id}','DrugTypeController@destroy')->name('drug-type.destroy');
+});
+
+Route::prefix('/drug')->group(function(){
+	Route::get('/','DrugController@index')->name('drug.index');
+	Route::get('/detail','DrugController@getModalDrug')->name('drug.detail');
+	Route::post('/','DrugController@store')->name('drug.store');
+	Route::put('/{id}','DrugController@update')->name('drug.update');
+	Route::delete('/{id}','DrugController@destroy')->name('drug.destroy');
+
+	Route::get('/stock-detail','DrugController@getModalDrugStock')->name('drug.stock');
+	Route::put('/update-stock/{id}','DrugController@updateStock')->name('drug.update-stock');
+	Route::get('/transaction-detail','DrugController@getModalDrugTransaction')->name('drug.transaction');
+});
+
+Route::prefix('/supplier')->group(function(){
+	Route::get('/','SupplierController@index')->name('supplier.index');
+	Route::get('/detail','SupplierController@getModalSupplier')->name('supplier.detail');
+	Route::post('/','SupplierController@store')->name('supplier.store');
+	Route::put('/{id}','SupplierController@update')->name('supplier.update');
+	Route::delete('/{id}','SupplierController@destroy')->name('supplier.destroy');
+});
+
+Route::prefix('/medical-device')->group(function(){
+	Route::get('/','MedicalDeviceController@index')->name('medical-device.index');
+	Route::get('/detail','MedicalDeviceController@getModalMedicalDevice')->name('medical-device.detail');
+	Route::post('/','MedicalDeviceController@store')->name('medical-device.store');
+	Route::put('/{id}','MedicalDeviceController@update')->name('medical-device.update');
+	Route::delete('/{id}','MedicalDeviceController@destroy')->name('medical-device.destroy');
+
+	Route::get('/stock-detail','MedicalDeviceController@getModalMedicalDeviceStock')->name('medical-device.stock');
+	Route::put('/update-stock/{id}','MedicalDeviceController@updateStock')->name('medical-device.update.stock');
+	Route::get('/transaction-detail','MedicalDeviceController@getModalMedicalDeviceTransaction')->name('medical-device.transaction');
+});
+
+Route::prefix('/supplement')->group(function(){
+	Route::get('/','SupplementController@index')->name('supplement.index');
+	Route::get('/detail','SupplementController@getModalSupplement')->name('supplement.detail');
+	Route::post('/','SupplementController@store')->name('supplement.store');
+	Route::put('/{id}','SupplementController@update')->name('supplement.update');
+	Route::delete('/{id}','SupplementController@destroy')->name('supplement.destroy');
+
+	Route::get('/stock-detail','SupplementController@getModalSupplementStock')->name('supplement.stock');
+	Route::put('/update-stock/{id}','SupplementController@updateStock')->name('supplement.update.stock');
+	Route::get('/transaction-detail','SupplementController@getModalSupplementTransaction')->name('supplement.transaction');
+});
+
+Route::put('/notification','NotificationController@update')->name('notification.update');
+
+Route::prefix('/transaction')->group(function(){
+	Route::get('/','TransactionController@index')->name('transaction.index');
+	Route::post('/{id}/{item}','TransactionController@store')->name('transaction.store');
+});
+
+Route::prefix('/shipping-history')->group(function(){
+	Route::get('/','ShippingController@index')->name('shipping-history.index');
+	Route::delete('/{id}','ShippingController@destroy')->name('shipping-history.destroy');
+});
+
+Route::prefix('/report')->group(function(){
+    Route::get('/cashier','ReportController@CashierReport')->name('report.cashier');
+    Route::get('/drug-category','ReportController@DrugCategoryReport')->name('report.drug-category');
+    Route::get('/drug-type','ReportController@DrugTypeReport')->name('report.drug-type');
+    Route::get('/drug','ReportController@DrugReport')->name('report.drug');
+    Route::get('/medical-device','ReportController@MedicalDeviceReport')->name('report.medical-device');
+    Route::get('/supplement','ReportController@SupplementReport')->name('report.supplement');
+    Route::get('/supplier','ReportController@SupplierReport')->name('report.supplier');
+});

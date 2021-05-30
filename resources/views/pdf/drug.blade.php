@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>PDF</title>
-    <style>
-        .custom
-        {
-            color: #ef5350;
-        }
+	<meta charset="UTF-8">
+	<title>PDF</title>
+	<style>
+		.custom
+		{
+			color: #ef5350;
+		}
 
         table
         {
@@ -21,10 +21,10 @@
         {
             border: 1px solid black;
         }
-    </style>
+	</style>
 </head>
 <body>
-    <div class="custom" style="text-align: center;">Smartpharmacy</div>
+	<div class="custom" style="text-align: center;">Smartpharmacy</div>
     <div style="text-align: center;">Laporan Data Obat</div>
     <div style="text-align: center;">Tanggal : {{ date('d-m-Y h:i') }}</div>
     <hr>
@@ -32,17 +32,17 @@
     <table>
         <thead class="table-bordered">
             <tr>
-                <th scope="col">Kode Supplier</th>
-                <th scope="col">Nama Supplier</th>
-                <th scope="col">Status Supplier</th>
+                <th scope="col">Kode Obat</th>
+                <th scope="col">Foto Obat</th>
+                <th scope="col">Nama Obat</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($supplier as $data)
-              <tr class="detail" data-id="{{ $data->id_supplier }}">
-                <td>{{ $data->kode_supplier }}</td>
-                <td>{{ $data->nama_supplier }}</td>
-                <td>{{ $data->status }}</td>
+            @foreach($obat as $data)
+              <tr>
+                <td>{{ $data->kode_obat }}</td>
+                <td><img src="{{ $data->foto_obat }}" alt="{{ $data->foto_obat }}" width="auto" height="100px" class="img-fluid"></td>
+                <td>{{ $data->nama_obat }}</td> 
               </tr>
             @endforeach
         </tbody>

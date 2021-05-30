@@ -11,50 +11,50 @@
 <div class="loadingmodal"></div>
  <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-     <a class="btn btn-outline-light ml-auto mr-1" href="{{ route('laporan.supplier') }}" target="_blank"><i class="fas fa-print text-white"></i></a>
+     <a class="btn btn-outline-light ml-auto mr-1" href="{{ route('report.supplier') }}" target="_blank"><i class="fas fa-print text-white"></i></a>
      <li class="breadcrumb-item active" aria-current="page"><button class="btn btn-outline-light" data-toggle="modal" data-target="#exampleModal">+</button></form>
     </ol>
   </nav>
 
 
 <div class="mb-3">{{ $supplier->links('vendor.pagination.bootstrap-4') }}</div>
-  <div class="table-responsive">
-<table class="table table-hover">
-  <thead class="table-bordered">
-      <tr>
-        <th scope="col">Kode Supplier</th>
-        <th scope="col">Nama Supplier</th>
-        <th scope="col">Status Supplier</th>
-      </tr>
-  </thead>
-  <tbody>
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead class="table-bordered">
+        <tr>
+          <th scope="col">Kode Supplier</th>
+          <th scope="col">Nama Supplier</th>
+          <th scope="col">Status Supplier</th>
+        </tr>
+    </thead>
+    <tbody>
 
-    @php
-      $kodes = ($kodesupplier !== null) ? $kodesupplier->kode_supplier : "SPL000";
-      $noUrut = substr($kodes,3);
-      $noUrut++;
-      $char = "SPL";
-      $kode = $char.sprintf("%03s",$noUrut);
-    @endphp
-    @foreach($supplier as $data)
-      <tr class="detail" data-id="{{ $data->id_supplier }}">
-        <td>{{ $data->kode_supplier }}</td>
-        <td>{{ $data->nama_supplier }}</td>
-        	@if ($data->status == "Aktif")
-        	 	@php
-        	 		echo "<td><span class='badge badge-primary'>$data->status</span></td>";
-        	 	@endphp
-			@else
-				@php
-					echo "<td><span class='badge badge-danger'>$data->status</span></td>";
-				@endphp
-        	@endif 	
+      @php
+        $kodes = ($kodesupplier !== null) ? $kodesupplier->kode_supplier : "SPL000";
+        $noUrut = substr($kodes,3);
+        $noUrut++;
+        $char = "SPL";
+        $kode = $char.sprintf("%03s",$noUrut);
+      @endphp
+      @foreach($supplier as $data)
+        <tr class="detail" data-id="{{ $data->id_supplier }}">
+          <td>{{ $data->kode_supplier }}</td>
+          <td>{{ $data->nama_supplier }}</td>
+            @if ($data->status == "Aktif")
+              @php
+                echo "<td><span class='badge badge-primary'>$data->status</span></td>";
+              @endphp
+        @else
+          @php
+            echo "<td><span class='badge badge-danger'>$data->status</span></td>";
+          @endphp
+            @endif 	
 
 
-      </tr>
-    @endforeach
-  </tbody>
-</table>
+        </tr>
+      @endforeach
+    </tbody>
+  </table>
 </div>
 
 <div class="mt-3">{{ $supplier->links('vendor.pagination.bootstrap-4') }}</div>
@@ -70,7 +70,7 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                    <form class="form-prevent" action="/supplier/tambahsupplier" method="POST">
+                    <form class="form-prevent" action="{{ route('supplier.store') }}" method="POST">
                       @csrf
                       Kode Supplier <input type="text" class="form-control" name="kode_supplier" value="{{ $kode }}" readonly="">
                       Nama Supplier <input type="text" class="form-control" name="nama_supplier">
@@ -101,7 +101,7 @@
 
       $.ajax({
         type:'GET',
-        url:'/supplier/detailsupplier',
+        url:'/supplier/detail',
         dataType:'json',
         data:{
           "id":$(this).data('id')

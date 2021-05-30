@@ -26,7 +26,7 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{asset('css/util.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}">
-	<link rel="stylesheet" href="{{ asset('style.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 <!--===============================================================================================-->
 </head>
 <body>
@@ -36,7 +36,7 @@
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
 				<form class="login100-form validate-form" action="/login" method="POST">
 					@csrf
-					<span class="login100-form-title p-b-33 text-danger">
+					<span class="login100-form-title p-b-33 text-info">
 						Smartpharmacy
 					</span>
 					@if (session('gagalLogin'))
@@ -58,7 +58,7 @@
 					</div>
 
 					<div class="container-login100-form-btn m-t-20">
-						<button type="submit" class="btn btn-outline-danger w-100 text-danger">
+						<button type="submit" class="btn btn-outline-info w-100 text-info">
 							Log in
 						</button>
 					</div>
@@ -69,7 +69,7 @@
 							Lupa
 						</span>
 
-						<a href="#" class="txt2 hov1 text-danger">
+						<a href="#" class="txt2 hov1 text-info">
 							Username / Password?
 						</a>
 					</div>
@@ -79,7 +79,7 @@
 	</div>
 	
 	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+	<script src="{{ asset('js/sweetalert.min.js') }}"></script>
 <!--===============================================================================================-->
 	<script src="{{asset('vendor/jquery/jquery-3.2.1.min.js')}}"></script>
 <!--===============================================================================================-->
@@ -102,6 +102,5 @@
 			swal('Error!','{{ session('queryException') }}','error');
 		</script>
 	@endif
-
 </body>
 </html>
