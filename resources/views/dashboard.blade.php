@@ -4,7 +4,6 @@
 @section('header')
 @parent
 @section('judul','Dashboard')
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css">
 @endsection
 
 @section('content')

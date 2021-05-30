@@ -6,15 +6,17 @@
 <head>
   <meta charset="UTF-8">
   <title>Aplikasi Kasir Toko Obat / Klinik Smartpharmacy - @yield('judul')</title>
-  <link rel="icon" href="{{ asset('images/ico.ico') }}">
-  <link rel="stylesheet" href="{{ asset('style.css') }}">
+  <link rel="icon" href="{{ asset('favicon.ico') }}">
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('bootstrap-4.3.1-dist/css/bootstrap.min.css') }}">  
   <link rel="stylesheet" href="{{ asset('fonts/font-awesome-4.7.0/css/font-awesome.css') }}">  
   <script src="{{ asset('js/jquery.min.js') }}"></script>
 </head>
 <body>
 <div class="page-wrapper chiller-theme toggled">
-  <div id="show-sidebar" class="btn rounded-0 btn-sm btn-sea text-white"></div>
+  <div id="show-sidebar" class="btn rounded-0 btn-sm btn-sea text-white">
+    <i class="fa fa-arrow-right"></i>
+  </div>
   <aside id="sidebar" class="sidebar-wrapper">
   <div class="sidebar">
     <div class="sidebar-content">
@@ -130,8 +132,6 @@
   <!-- content-wrapper  -->
   <div class="content-wrapper">
     <nav class="navbar navbar-expand-lg navbar-light">
-      <a class="navbar-brand text-white" href="#statistik">Smartpharmacy</a>
-
       <div class="btn-group ml-auto">
         <form action="/logout" method="POST">@csrf<button type="submit" class="btn bg-transparent m-auto"><i class="fa fa-power-off text-white"></i></button></form> 
       </div>

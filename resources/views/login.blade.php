@@ -26,7 +26,7 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{asset('css/util.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}">
-	<link rel="stylesheet" href="{{ asset('style.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 <!--===============================================================================================-->
 </head>
 <body>
@@ -79,7 +79,7 @@
 	</div>
 	
 	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+	<script src="{{ asset('js/sweetalert.min.js') }}"></script>
 <!--===============================================================================================-->
 	<script src="{{asset('vendor/jquery/jquery-3.2.1.min.js')}}"></script>
 <!--===============================================================================================-->
@@ -102,6 +102,5 @@
 			swal('Error!','{{ session('queryException') }}','error');
 		</script>
 	@endif
-
 </body>
 </html>

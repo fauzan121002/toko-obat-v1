@@ -11,7 +11,7 @@
 <body>
 
 <div class="uk-background-secondary uk-background-blend-color-burn uk-light uk-padding uk-panel">
-<img src="{{ asset('images/ico.ico') }}" alt="N/A">
+<img src="{{ asset('favicon.ico') }}" alt="N/A">
 <div class="uk-text-bold uk-text-danger">SMARTPHARMACY</div> 
 <div class="uk-margin-top uk-align-left uk-width-auto uk-text-small">
 	Nama Toko : Pharmasia Indonesia
@@ -65,7 +65,7 @@
 	window.print();
 </script>
 
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="{{ asset('js/jquery.min.js') }}"></script>
 @if ($barang === "obat")
     <script>
         setTimeout(window.location.replace("{{ route('drug.index') }}"),100);            
