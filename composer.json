@@ -12,9 +12,9 @@
         "barryvdh/laravel-dompdf": "^0.8.5",
         "fakerphp/faker": "^1.14",
         "fideloper/proxy": "^4.0",
-        "laravel/framework": "5.8.*",
+        "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
-        "milon/barcode": "^5.3"
+        "milon/barcode": "^6.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
