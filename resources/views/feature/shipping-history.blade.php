@@ -11,7 +11,7 @@
 <div class="mb-3">{{ $riwayatpengiriman->links('vendor.pagination.bootstrap-4') }}</div>
 <div class="table-responsive">
 <table class="table table-bordered">
-  <thead>
+  <thead class="table-bordered">
     <tr>
       <th scope="col">Nama Supplier</th>
       <th scope="col">Barang Dikirim</th>

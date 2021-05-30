@@ -30,7 +30,7 @@
     <hr>
 
     <table>
-        <thead>
+        <thead class="table-bordered">
             <tr>
                 <th scope="col">Kode Supplier</th>
                 <th scope="col">Nama Supplier</th>

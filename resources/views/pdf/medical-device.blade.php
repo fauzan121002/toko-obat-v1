@@ -30,7 +30,7 @@
     <hr>
 
     <table>
-        <thead>
+        <thead class="table-bordered">
             <tr>
                 <th scope="col">Kode Alat Kesehatan</th>
                 <th scope="col">Foto Alat Kesehatan</th>

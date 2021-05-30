@@ -18,43 +18,43 @@
 
 
 <div class="mb-3">{{ $supplier->links('vendor.pagination.bootstrap-4') }}</div>
-  <div class="table-responsive">
-<table class="table table-hover">
-  <thead class="table-bordered">
-      <tr>
-        <th scope="col">Kode Supplier</th>
-        <th scope="col">Nama Supplier</th>
-        <th scope="col">Status Supplier</th>
-      </tr>
-  </thead>
-  <tbody>
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead class="table-bordered">
+        <tr>
+          <th scope="col">Kode Supplier</th>
+          <th scope="col">Nama Supplier</th>
+          <th scope="col">Status Supplier</th>
+        </tr>
+    </thead>
+    <tbody>
 
-    @php
-      $kodes = ($kodesupplier !== null) ? $kodesupplier->kode_supplier : "SPL000";
-      $noUrut = substr($kodes,3);
-      $noUrut++;
-      $char = "SPL";
-      $kode = $char.sprintf("%03s",$noUrut);
-    @endphp
-    @foreach($supplier as $data)
-      <tr class="detail" data-id="{{ $data->id_supplier }}">
-        <td>{{ $data->kode_supplier }}</td>
-        <td>{{ $data->nama_supplier }}</td>
-        	@if ($data->status == "Aktif")
-        	 	@php
-        	 		echo "<td><span class='badge badge-primary'>$data->status</span></td>";
-        	 	@endphp
-			@else
-				@php
-					echo "<td><span class='badge badge-danger'>$data->status</span></td>";
-				@endphp
-        	@endif 	
+      @php
+        $kodes = ($kodesupplier !== null) ? $kodesupplier->kode_supplier : "SPL000";
+        $noUrut = substr($kodes,3);
+        $noUrut++;
+        $char = "SPL";
+        $kode = $char.sprintf("%03s",$noUrut);
+      @endphp
+      @foreach($supplier as $data)
+        <tr class="detail" data-id="{{ $data->id_supplier }}">
+          <td>{{ $data->kode_supplier }}</td>
+          <td>{{ $data->nama_supplier }}</td>
+            @if ($data->status == "Aktif")
+              @php
+                echo "<td><span class='badge badge-primary'>$data->status</span></td>";
+              @endphp
+        @else
+          @php
+            echo "<td><span class='badge badge-danger'>$data->status</span></td>";
+          @endphp
+            @endif 	
 
 
-      </tr>
-    @endforeach
-  </tbody>
-</table>
+        </tr>
+      @endforeach
+    </tbody>
+  </table>
 </div>
 
 <div class="mt-3">{{ $supplier->links('vendor.pagination.bootstrap-4') }}</div>

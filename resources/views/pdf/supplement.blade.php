@@ -30,7 +30,7 @@
     <hr>
 
     <table>
-        <thead>
+        <thead class="table-bordered">
             <tr>
                 <th scope="col">Kode Suplemen</th>
                 <th scope="col">Foto Suplemen</th>

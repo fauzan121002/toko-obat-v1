@@ -30,7 +30,7 @@
     <hr>
 
     <table>
-        <thead>
+        <thead class="table-bordered">
             <tr>
                 <th>Kode Kasir</th>
                 <th>Foto Kasir</th>

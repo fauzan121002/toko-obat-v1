@@ -29,7 +29,7 @@
 
 <table class="uk-table uk-sortable">
     <caption class="uk-margin-left uk-table-middle uk-text-primary">Informasi Transaksi</caption>
-    <thead>
+    <thead class="table-bordered">
         <tr>
             <th>Nama Pesanan</th>
             <th>Jumlah Pesanan</th>

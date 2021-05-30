@@ -30,7 +30,7 @@
     <hr>
 
     <table>
-        <thead>
+        <thead class="table-bordered">
             <tr>    
                 <th scope="col">Kode Jenis Obat</th>
                 <th scope="col">Nama Jenis Obat</th>

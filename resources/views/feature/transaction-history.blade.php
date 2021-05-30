@@ -10,8 +10,8 @@
   {{ $transaksi->links() }}
 
   <div class="table-responsive">
-    <table class="table table-light table-striped">
-      <thead>
+    <table class="table table-hover">
+      <thead class="table-bordered">
         <tr>
           <th>Kode Transaksi</th>
           <th>Pesanan</th>
@@ -20,15 +20,6 @@
           <th>Kasir</th>
         </tr>
       </thead>
-      <tfoot>
-        <tr>
-          <th>Kode Transaksi</th>
-          <th>Pesanan</th>
-          <th>Jumlah Pesanan</th>
-          <th>Uang Diterima</th>
-          <th>Kasir</th>
-        </tr>
-      </tfoot>
       <tbody>
         @foreach ($transaksi as $data)
         <tr>
