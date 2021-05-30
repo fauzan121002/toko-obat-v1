@@ -17,7 +17,8 @@
   <div id="show-sidebar" class="btn btn-sm btn-dark text-white">
     <i class="fas fa-bars"></i>
   </div>
-  <nav id="sidebar" class="sidebar-wrapper">
+  <aside id="sidebar" class="sidebar-wrapper">
+  <div class="sidebar">
     <div class="sidebar-content">
       <div class="sidebar-brand">
         <a href="{{ route('dashboard') }}">Smartpharmacy</a>
@@ -139,91 +140,94 @@
         <i class="fa fa-power-off"></i>
       </a>
     </div>
-  </nav>
+  </div>
+  </aside>
   <!-- sidebar-wrapper  -->
 
   <!-- content-wrapper  -->
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand text-white" href="#statistik">Smartpharmacy</a>
+  <div class="content-wrapper">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand text-white" href="#statistik">Smartpharmacy</a>
 
-    <div class="btn-group ml-auto">
-      <form action="/logout" method="POST">@csrf<button type="submit" class="btn bg-transparent m-auto"><i class="fas fa-sign-out-alt text-white"></i></button></form> 
-    </div>
-  </nav>
+      <div class="btn-group ml-auto">
+        <form action="/logout" method="POST">@csrf<button type="submit" class="btn bg-transparent m-auto"><i class="fas fa-sign-out-alt text-white"></i></button></form> 
+      </div>
+    </nav>
 
-  @yield('content')
-  @if (session('level') == 'admin' || session('level') == 'developer')
-    <div class="modal fade" id="notification-update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ubah Pengumuman</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="form-group">
-              <form action="{{ route('notification.update') }}" method="POST">
-                @method('PUT')
-                @csrf
-                <textarea name="isi_pengumuman" class="form-control" id="isi_pengumuman" cols="30" rows="10"></textarea>  
+    @yield('content')
+    @if (session('level') == 'admin' || session('level') == 'developer')
+      <div class="modal fade" id="notification-update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Ubah Pengumuman</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Ubah</button>
-            </form>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>        
+            <div class="modal-body">
+              <div class="form-group">
+                <form action="{{ route('notification.update') }}" method="POST">
+                  @method('PUT')
+                  @csrf
+                  <textarea name="isi_pengumuman" class="form-control" id="isi_pengumuman" cols="30" rows="10"></textarea>  
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Ubah</button>
+              </form>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>        
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  @endif
-  @show
+    @endif
+    @show
 
-  <div class="container-fluid mt-3">
-  @if ($notification = Session::get('error'))
-    <div class="alert alert-danger alert-block">
-      <button type="button" class="close" data-dismiss="alert">×</button>   
-      <strong>{{ $notification }}</strong>
-    </div>
-  @endif
+    <div class="container-fluid mt-3">
+      @if ($notification = Session::get('error'))
+        <div class="alert alert-danger alert-block">
+          <button type="button" class="close" data-dismiss="alert">×</button>   
+          <strong>{{ $notification }}</strong>
+        </div>
+      @endif
 
-  @if ($errors->any())
-    <div class="alert alert-danger alert-block">
-        <button type="button" class="close" data-dismiss="alert">×</button>   
-        <ol>
-          @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-          @endforeach
-        </ol>
-    </div>
-  @endif
+      @if ($errors->any())
+        <div class="alert alert-danger alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>   
+            <ol>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+            </ol>
+        </div>
+      @endif
 
-  @if (session('stockUpdated'))
-      <div class="alert alert-success alert-block">
-        <button type="button" class="close" data-dismiss="alert">×</button>   
-        {{ session('stockUpdated') }}
-      </div>
-  @endif
-  @if(session('itemAdded'))
-      <div class="alert alert-success alert-block">
-        <button type="button" class="close" data-dismiss="alert">×</button>   
-        {{ session('itemAdded') }}
-      </div>
-  @endif
-  @if(session('itemDeleted'))
-      <div class="alert alert-success alert-block">
-        <button type="button" class="close" data-dismiss="alert">×</button>           
-        {{ session('itemDeleted') }}
-      </div>
-  @endif
-  @if (session('itemUpdated'))
-      <div class="alert alert-success alert-block">
-        <button type="button" class="close" data-dismiss="alert">×</button>       
-        {{ session('itemUpdated') }}
-      </div>
-  @endif
+      @if (session('stockUpdated'))
+          <div class="alert alert-success alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>   
+            {{ session('stockUpdated') }}
+          </div>
+      @endif
+      @if(session('itemAdded'))
+          <div class="alert alert-success alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>   
+            {{ session('itemAdded') }}
+          </div>
+      @endif
+      @if(session('itemDeleted'))
+          <div class="alert alert-success alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>           
+            {{ session('itemDeleted') }}
+          </div>
+      @endif
+      @if (session('itemUpdated'))
+          <div class="alert alert-success alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>       
+            {{ session('itemUpdated') }}
+          </div>
+      @endif
+    </div>
   </div>
 </div>
 @section('footer')
