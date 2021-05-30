@@ -11,7 +11,7 @@
     <ol class="breadcrumb">
      <li class="breadcrumb-item active ml-auto" aria-current="page">   
       <a class="btn btn-outline-light" href="{{ route('report.drug') }}" target="_blank"><i class="fas fa-print text-white"></i></a>  
-      <button class="btn btn-outline-light" data-toggle="modal" data-target="#exampleModal">{{ Session::get('obat') }}+</button></form>
+      <button class="btn btn-outline-light" data-toggle="modal" data-target="#exampleModal">+</button></form>
     </ol>
   </nav>
 

@@ -14,7 +14,7 @@
 </head>
 <body>
 <div class="page-wrapper chiller-theme toggled">
-  <div id="show-sidebar" class="btn rounded-0 btn-sm btn-dark text-white"></div>
+  <div id="show-sidebar" class="btn rounded-0 btn-sm btn-sea text-white"></div>
   <aside id="sidebar" class="sidebar-wrapper">
   <div class="sidebar">
     <div class="sidebar-content">
@@ -59,7 +59,7 @@
           <li class="header-menu">
             <span>General</span>
           </li>
-          <li class="sidebar-menu">
+          <li>
             <a href="{{ route('dashboard') }}">
               <i class="fa fa-tachometer-alt"></i>
               <span>Dashboard</span>
@@ -74,23 +74,23 @@
               <ul>
                 <li>
                   @if (session('level') == 'admin' || session('level') == 'developer')                
-                  <a class="nav-link text-white" href="{{ route('cashier.index') }}"><span class="mr-1 ml-2"><i class="fas fa-user-cog"></i></span>Kasir</a>
+                  <a class="nav-link text-white" href="{{ route('cashier.index') }}">Kasir</a>
                   @endif
                 </li>
                 <li>
-                  <a class="nav-link text-white" href="{{ route('drug-category.index') }}"><span class="mr-1 ml-2"><i class="fas fa-tablets"></i></span>Kategori</a>
+                  <a class="nav-link text-white" href="{{ route('drug-category.index') }}">Kategori</a>
                 </li>
                 <li>
-                  <a class="nav-link text-white" href="{{ route('drug-type.index') }}"><span class="mr-1 ml-2"><i class="fas fa-pills"></i></span>Jenis</a>
+                  <a class="nav-link text-white" href="{{ route('drug-type.index') }}">Jenis</a>
                 </li>
                 <li>
-                  <a class="nav-link text-white" href="{{ route('drug.index') }}"><span class="mr-1 ml-2"><i class="fas fa-tablets"></i></span>Obat</a>
+                  <a class="nav-link text-white" href="{{ route('drug.index') }}">Obat</a>
                 </li>
                 <li>
-                  <a class="nav-link text-white" href="{{ route('medical-device.index') }}"><span class="mr-1 ml-2"><i class="fas fa-stethoscope"></i></span>Alat Kesehatan</a>
+                  <a class="nav-link text-white" href="{{ route('medical-device.index') }}">Alat Kesehatan</a>
                 </li>
                 <li>
-                  <a class="nav-link text-white" href="{{ route('supplement.index') }}"><span class="mr-1 ml-2"><i class="fas fa-capsules"></i></span>Suplemen</a>  
+                  <a class="nav-link text-white" href="{{ route('supplement.index') }}">Suplemen</a>  
                 </li>
               </ul>
             </div>
@@ -103,14 +103,14 @@
             <div class="sidebar-submenu">
               <ul>
                 <li>
-                  <a class="nav-link text-white" href="{{ route('supplier.index') }}"><span class="mr-1 ml-2"><i class="fas fa-truck"></i></span>Supplier</a>  
+                  <a class="nav-link text-white" href="{{ route('supplier.index') }}">Supplier</a>  
                 </li>
                 <li>
-                  <a class="nav-link text-white" href="{{ route('transaction.index') }}"><span class="mr-1 ml-2"><i class="fas fa-comment-dollar"></i></span>Riwayat Transaksi</a>
+                  <a class="nav-link text-white" href="{{ route('transaction.index') }}">Riwayat Transaksi</a>
                 </li>
                 <li>
                 @if (session('level') == 'admin' || session('level') == 'developer')
-                    <a data-toggle="modal" data-target="#notification-update" class="nav-link text-white"><span class="mr-1 ml-2"><i class="fas fa-plus"></i></span>Update Pengumuman</a>         
+                    <a data-toggle="modal" data-target="#notification-update" class="nav-link text-white">Update Pengumuman</a>         
                 @endif
                 </li>
               </ul>
@@ -122,21 +122,6 @@
     </div>
     <!-- sidebar-content  -->
     <div class="sidebar-footer">
-      <a href="#">
-        <i class="fa fa-bell"></i>
-        <span class="badge badge-pill badge-warning notification">3</span>
-      </a>
-      <a href="#">
-        <i class="fa fa-envelope"></i>
-        <span class="badge badge-pill badge-success notification">7</span>
-      </a>
-      <a href="#">
-        <i class="fa fa-cog"></i>
-        <span class="badge-sonar"></span>
-      </a>
-      <a href="#">
-        <i class="fa fa-power-off"></i>
-      </a>
     </div>
   </div>
   </aside>
@@ -148,7 +133,7 @@
       <a class="navbar-brand text-white" href="#statistik">Smartpharmacy</a>
 
       <div class="btn-group ml-auto">
-        <form action="/logout" method="POST">@csrf<button type="submit" class="btn bg-transparent m-auto"><i class="fas fa-sign-out-alt text-white"></i></button></form> 
+        <form action="/logout" method="POST">@csrf<button type="submit" class="btn bg-transparent m-auto"><i class="fa fa-power-off text-white"></i></button></form> 
       </div>
     </nav>
 

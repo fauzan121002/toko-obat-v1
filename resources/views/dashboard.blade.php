@@ -21,7 +21,7 @@
 <div class="container-fluid">
     <div class="row mt-3">
         <div class="col-xl-3 col-md-6 col-sm-12">
-            <div class="card text-white border-danger text-danger ml-auto mr-auto mb-2">
+            <div class="card text-white border-info text-info ml-auto mr-auto mb-2">
                 <div class="card-header">Total Transaksi</div>
                 <div class="card-body">
                     <h5 class="card-title font-weight-bold">{{ $total_transaksi }}</h5>
@@ -29,15 +29,15 @@
             </div>
         </div>
         <div class="col-xl-3 col-md-6 col-sm-12">
-            <div class="card text-white ml-auto mr-auto border-danger text-danger mb-2">
+            <div class="card text-white ml-auto mr-auto border-info text-info mb-2">
                 <div class="card-header">Total Pemasukan</div>
                 <div class="card-body">
-                    <h5 class="card-title font-weight-bold">Rp.{{ $uang_diterima }},00</h5>
+                    <h5 class="card-title font-weight-bold">Rp.{{ number_format($uang_diterima,2,',','.') }}</h5>
                 </div>
             </div>			
         </div>
         <div class="col-xl-3 col-md-6 col-sm-12">
-            <div class="card text-white ml-auto mr-auto border-danger text-danger mb-2">
+            <div class="card text-white ml-auto mr-auto border-info text-info mb-2">
                 <div class="card-header">Jumlah Kasir</div>
                 <div class="card-body">
                     <h5 class="card-title font-weight-bold">{{ $jumlah_kasir }}</h5>
@@ -45,7 +45,7 @@
             </div>			
         </div>
         <div class="col-xl-3 col-md-6 col-sm-12">
-            <div class="card text-white ml-auto mr-auto border-danger text-danger mb-2">
+            <div class="card text-white ml-auto mr-auto border-info text-info mb-2">
                 <div class="card-header">Transaksi Bulan Ini</div>
                 <div class="card-body">
                     <h5 class="card-title font-weight-bold">{{ $transaksi_bulanan }}</h5>
@@ -57,7 +57,7 @@
     <div class="row mt-3">
         <div class="col-md-12">
 
-            <div class="card text-white bg-success ml-auto mr-auto mb-2">
+            <div class="card text-white bg-info ml-auto mr-auto mb-2">
             <div class="card-header">Pengumuman</div>
                 <div class="card-body">
                 <p>{{ $pengumuman->updated_at ? "Terakhir diubah : $pengumuman->updated_at" : "" }}</p>
